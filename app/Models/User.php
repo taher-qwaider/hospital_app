@@ -21,8 +21,7 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
-    protected $with = ['image', 'city', 'teacher'];
-    protected $appends = ['full_name'];
+    protected $with = ['image', 'city'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,9 +51,6 @@ class User extends Authenticatable
     {
         return $this->where('email', $email)->first();
     }
-    public function getFullNameAttribute(){
-        return $this->first_name . ' ' . $this->last_name;
-    }
 
     public function image(){
         return $this->morphOne(Image::class,'object');
@@ -62,13 +58,13 @@ class User extends Authenticatable
     public function city(){
         return $this->belongsTo(City::class);
     }
-    public function teacher(){
-        return $this->belongsTo(Teacher::class);
-    }
+//    public function teacher(){
+//        return $this->belongsTo(Teacher::class);
+//    }
 //    public function admin(){
 //        return $this->hasOneThrough(Admin::class, Teacher::class);
 //    }
-    public function homeWorks(){
-        return $this->hasMany(HomeWork::class, 'user_id', 'id');
-    }
+//    public function homeWorks(){
+//        return $this->hasMany(HomeWork::class, 'user_id', 'id');
+//    }
 }

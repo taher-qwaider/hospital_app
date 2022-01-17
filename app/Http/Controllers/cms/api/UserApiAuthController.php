@@ -24,17 +24,16 @@ class UserApiAuthController extends Controller
             $user = User::where('email', $request->get('email'))->first();
             $this->revokeActiveTokens($user->id);
             $response = Http::asForm()
-                ->post('http://127.0.0.1:8081/oauth/token', [
+                ->post('http://127.0.0.1:8082/oauth/token', [
                     'grant_type' => 'password',
-                    'client_id' => '2',
-                    'client_secret' => 'wrdz9dk7RvcdN21zZgZp78vDiW0tooSlWvSVPo77',
+                    'client_id' => '1',
+                    'client_secret' => 'NOxHIVVKoViMUA922EgYuKjtfjkOK2cn4Y9LYpBA',
                     'username' => $request->get('email'),
                     'password' => $request->get('password'),
                     'scope' => '*',
                 ]);
             $user->setAttribute('token', $response->json()['access_token']);
             $user->setAttribute('refresh_token', $response->json()['refresh_token']);
-//            return response()->json(['status' => $response->json()], 200);
             return response()->json(['status' => true, 'message'=>'تم تسجيل الدخول بنجاح', 'user' => $user], 200);
         }else{
             return response()->json(['status' => false, 'message' => $validator->getMessageBag()->first()], 200);
@@ -43,8 +42,7 @@ class UserApiAuthController extends Controller
 
     public function register(Request $request){
         $validator = Validator($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'full_name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|digits:9|unique:users,phone',
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
@@ -54,22 +52,20 @@ class UserApiAuthController extends Controller
         ]);
         if (!$validator->fails()){
             $data = [
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
+                'full_name' => $request->get('full_name'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
-                'teacher_id' => $request->get('teacher_id'),
                 'phone' => $request->get('phone'),
 //                'city_id' => $request->get('city_id'),
                 'address' => $request->get('address'),
-                'password' => Hash::make('password')
+                'password' => $request->has('password') ? Hash::make($request->password) : Hash::make('password')
             ];
             $isSaved = $user = User::updateOrCreate(['id' => 0], $data);
 
-            $user->assignRole('user');
-            return response()->json(['message' => $isSaved ? 'تم إنشاء المستخدم' : 'خطأ في إنشاء المستخدم', 'id' => $user->id]);
+//            $user->assignRole('user');
+            return response()->json(['status' => true,'message' => $isSaved ? 'تم إنشاء المستخدم' : 'خطأ في إنشاء المستخدم']);
         }else
-            return response()->json(['message' => $validator->getMessageBag()->first()], 200);
+            return response()->json(['status' => false,'message' => $validator->getMessageBag()->first()], 200);
     }
     private function revokeActiveTokens($userId)
     {

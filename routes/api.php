@@ -23,19 +23,20 @@ Route::prefix('sections')->group(function (){
 });
 
 Route::prefix('users')->group(function (){
-    Route::get('register', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'register']);
+    Route::get('home', [\App\Http\Controllers\cms\api\HomeController::class, 'home']);
+    Route::post('register', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'register']);
 //    Route::post('sendReservation/{email}', [\App\Http\Controllers\cms\api\ReservationController::class, 'sendReservationEmail']);
 });
 
-Route::prefix('user/auth')->group(function (){
+Route::prefix('users/auth')->group(function (){
     Route::post('login', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'login']);
 });
-Route::prefix('user/auth')->middleware('auth:userApi')->group(function (){
+Route::prefix('users/auth')->middleware('auth:userApi')->group(function (){
     Route::get('logout', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'logout']);
     Route::get('refresh', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'refreshToken']);
-    Route::post('sendReservation/{email}', [\App\Http\Controllers\cms\api\ReservationController::class, 'sendReservationEmail']);
-    Route::get('users/profile', [\App\Http\Controllers\cms\api\UserProfileController::class, 'get']);
-    Route::post('users/profile', [\App\Http\Controllers\cms\api\UserProfileController::class, 'edit']);
+    Route::post('sendReservation', [\App\Http\Controllers\cms\api\ReservationController::class, 'sendReservationEmail']);
+    Route::get('profile', [\App\Http\Controllers\cms\api\UserProfileController::class, 'get']);
+    Route::post('profile', [\App\Http\Controllers\cms\api\UserProfileController::class, 'edit']);
 });
 
 //Route::prefix('teacher/auth')->group(function (){

@@ -24,18 +24,16 @@ class UserProfileController extends Controller
         if ($request->expectsJson()){
             $user = Auth::guard('userApi')->user();
             $validator = Validator($request->all(), [
-                'first_name' =>'required|string|min:3',
-                'last_name' =>'required|string|min:3',
+                'full_name' =>'required|string|min:3',
                 'email' =>'required|email|unique:users,email,'.$user->id,
                 'phone' =>'required|digits:9|unique:users,phone,'.$user->id,
-                'level' =>'required|string|in:A,B,C',
                 'gender' =>'required|string|in:M,F',
                 'address' =>'required|string|min:5',
             ]);
             if (!$validator->fails()){
                 $this->userSaveData($request, $user);
                 if ($request->hasFile('image')){
-                    $this->uploadFile($request->file('image'), 'images/teachers/', 'public', 'user_' . time());
+                    $this->uploadFile($request->file('image'), 'images/users/', 'public', 'user_' . time());
                     $image = $user->image ?? new Image();
                     $image->path = $this->filePath;
                     $isSaved = $user->image()->save($image);
@@ -55,8 +53,7 @@ class UserProfileController extends Controller
     }
     public function userSaveData(Request $request, $user): User
     {
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
+        $user->full_name = $request->get('full_name');
         $user->email = $request->get('email');
         $user->phone = $request->get('phone');
         $user->gender = $request->get('gender');
