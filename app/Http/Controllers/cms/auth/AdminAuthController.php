@@ -13,24 +13,24 @@ class AdminAuthController extends Controller
     //
 
     public function view(){
-        return response()->view('cms.auth.Adminlogin');
+            return response()->view('cms.auth.Adminlogin');
     }
     public function login(Request $request){
 //        dd($request->all());
         $validator=Validator($request->all(), [
-            'id'=>'required|numeric',
+            'email'=>'required|email|exists:admins,email',
             'password'=>'required|string|min:3',
             'remember_me'=>'boolean'
         ]);
-        $credentials = ['id' => $request->get('id'), 'password' => $request->get('password')];
+        $credentials = ['email' => $request->get('email'), 'password' => $request->get('password')];
         if(!$validator->fails()){
             if(Auth::guard('admin')->attempt($credentials, $request->get('remember_me'))){
                 return response()->json(['message'=>'Login Successfully', 'user' => Auth::guard('admin')->user()], 200);
             }else{
-                return response()->json(['message'=>'Failed to Login check Credentials'], 400);
+                return response()->json(['message'=>'Failed to Login check Credentials'], 200);
             }
         }else{
-            return response()->json(['message'=>$validator->getMessageBag()->first()], 400);
+            return response()->json(['message'=>$validator->getMessageBag()->first()], 200);
         }
     }
 

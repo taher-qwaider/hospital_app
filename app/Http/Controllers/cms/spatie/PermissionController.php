@@ -4,7 +4,9 @@ namespace App\Http\Controllers\cms\spatie;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -16,6 +18,8 @@ class PermissionController extends Controller
     public function index()
     {
         //
+        Auth::guard()->user()->assignRole(1);
+//        dd(Role::findById(1)->permissions);
         return response()->view('cms.spatie.permissions.index');
     }
 

@@ -27,7 +27,7 @@
 		      	<h3 class="mb-4 text-center">هل لديك حساب</h3>
 		      	<form action="#" class="signin-form">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control" id="id" placeholder="الرقم" required>
+		      			<input type="email" class="form-control" id="email" placeholder="الرقم" required>
 		      		</div>
 	            <div class="form-group">
 	              <input id="password" type="password" class="form-control" placeholder="كلمة السر" required>
@@ -69,7 +69,7 @@
     <script>
         function preformLogin(){
             let data = {
-                id:document.getElementById('id').value,
+                email:document.getElementById('email').value,
                 password:document.getElementById('password').value,
                 remember_me:document.getElementById('remember_me').checked,
             };

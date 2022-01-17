@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(500)->create();
+//         \App\Models\User::factory(500)->create();
+        $this->call(RolesTableSeeder::class);
+
+//        $admin = Admin::where('email', 'info@admin.com');
+//        $admin->assignRole('admin');
     }
 }

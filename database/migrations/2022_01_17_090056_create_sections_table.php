@@ -15,16 +15,15 @@ class CreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name', 45);
-            $table->string('last_name', 45);
+            $table->string('full_name');
             $table->string('email')->unique();
             $table->integer('phone')->unique();
             $table->enum('gender', ['M', 'F']);
             $table->string('address');
             $table->string('password');
 //            $table->timestamp('email_verified_at')->nullable();
-//            $table->foreignId('city_id');
-//            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreignId('city_id');
+            $table->foreign('city_id')->references('id')->on('cities');
             $table->softDeletes();
             $table->timestamps();
         });

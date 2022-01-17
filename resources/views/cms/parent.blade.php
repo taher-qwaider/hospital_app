@@ -209,8 +209,8 @@
                                     m-dropdown-toggle="click">
                                     <a href="#" class="m-nav__link m-dropdown__toggle">
                                         <span class="m-topbar__userpic">
-                                            <img src="/storage/{{ Auth::user()->image->path }}"
-                                                 class="m--img-rounded m--marginless" alt=""/>
+{{--                                            <img src="/storage/{{ Auth::user()->image->path }}"--}}
+{{--                                                 class="m--img-rounded m--marginless" alt=""/>--}}
                                         </span>
                                         <span class="m-topbar__username m--hide"></span>
                                     </a>
@@ -222,8 +222,8 @@
                                                  style="background: url({{ asset('assets/img/user_profile_bg.jpg') }}); background-size: cover;">
                                                 <div class="m-card-user m-card-user--skin-dark">
                                                     <div class="m-card-user__pic">
-                                                        <img src="/storage/{{ Auth::user()->image->path }}"
-                                                             class="m--img-rounded m--marginless" alt=""/>
+{{--                                                        <img src="/storage/{{ Auth::user()->image->path }}"--}}
+{{--                                                             class="m--img-rounded m--marginless" alt=""/>--}}
                                                     </div>
                                                     <div class="m-card-user__details">
                                                         <span
@@ -404,7 +404,7 @@
 									<span class="m-menu__link-badge"></span> </span></span></span>
                     </li>
 
-                   @can('read-permissions')
+{{--                   @can('read-permissions')--}}
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                             m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i
                                     class="m-menu__link-icon  fa fa-user"></i><span
@@ -419,8 +419,8 @@
                                 </ul>
                             </div>
                         </li>
-                   @endcan
-                    @can('read-roles')
+{{--                   @endcan--}}
+{{--                    @can('read-roles')--}}
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                             m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i
                                     class="m-menu__link-icon  fa fa-user"></i><span
@@ -435,7 +435,7 @@
                                 </ul>
                             </div>
                         </li>
-                    @endcan
+{{--                    @endcan--}}
                     @can('read-cities')
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                             m-menu-submenu-toggle="hover"><a href="{{ route('cities.index') }}"

@@ -34,13 +34,13 @@ class Admin extends Authenticatable
     public function city(){
         return $this->belongsTo(City::class);
     }
-    public function users(){
-        return $this->hasManyThrough(User::class, Teacher::class);
-    }
-    public function teachers(){
-        return $this->hasMany(Teacher::class);
-    }
-    public function posts(){
-        return $this->hasMany(Post::class);
-    }
+//    public function users(){
+//        return $this->hasManyThrough(User::class, Teacher::class);
+//    }
+//    public function teachers(){
+//        return $this->hasMany(Teacher::class);
+//    }
+//    public function posts(){
+//        return $this->hasMany(Post::class);
+//    }
 }
