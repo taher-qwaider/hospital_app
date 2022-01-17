@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::prefix('doctors')->group(function (){
+    Route::get('index', [\App\Http\Controllers\cms\api\DoctorController::class, 'index']);
+});
+
+Route::prefix('sections')->group(function (){
+    Route::get('index', [\App\Http\Controllers\cms\api\SectionController::class, 'index']);
+});
 
 Route::prefix('user/auth')->group(function (){
     Route::post('login', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'login']);

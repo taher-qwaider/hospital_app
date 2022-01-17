@@ -19,13 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 45);
             $table->string('email')->unique();
             $table->integer('phone')->unique();
-            $table->enum('level', ['A', 'B', 'C']);
             $table->enum('gender', ['M', 'F']);
             $table->string('address');
             $table->string('password');
 //            $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
+//            $table->foreignId('city_id');
+//            $table->foreign('city_id')->references('id')->on('cities');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\cms\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class UserApiAuthController extends Controller
@@ -37,6 +39,37 @@ class UserApiAuthController extends Controller
         }else{
             return response()->json(['status' => false, 'message' => $validator->getMessageBag()->first()], 200);
         }
+    }
+
+    public function register(Request $request){
+        $validator = Validator($request->all(), [
+            'first_name' => 'required|string|min:3',
+            'last_name' => 'required|string|min:3',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|digits:9|unique:users,phone',
+//            'image' => 'required|image|mimes:jpg,jpeg,png',
+            'gender' => 'required|in:M,F',
+//            'city_id' => 'required|numeric|exists:cities,id',
+            'address' => 'required|string',
+        ]);
+        if (!$validator->fails()){
+            $data = [
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'email' => $request->get('email'),
+                'gender' => $request->get('gender'),
+                'teacher_id' => $request->get('teacher_id'),
+                'phone' => $request->get('phone'),
+//                'city_id' => $request->get('city_id'),
+                'address' => $request->get('address'),
+                'password' => Hash::make('password')
+            ];
+            $isSaved = $user = User::updateOrCreate(['id' => 0], $data);
+
+            $user->assignRole('user');
+            return response()->json(['message' => $isSaved ? 'تم إنشاء المستخدم' : 'خطأ في إنشاء المستخدم', 'id' => $user->id]);
+        }else
+            return response()->json(['message' => $validator->getMessageBag()->first()], 200);
     }
     private function revokeActiveTokens($userId)
     {
