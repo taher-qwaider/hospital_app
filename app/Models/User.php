@@ -45,12 +45,12 @@ class User extends Authenticatable
     /**
      * Find the user instance for the given username.
      *
-     * @param  string  $username
+     * @param  string  $email
      * @return \App\Models\User
      */
-    public function findForPassport($username)
+    public function findForPassport($email)
     {
-        return $this->where('id', $username)->first();
+        return $this->where('email', $email)->first();
     }
     public function getFullNameAttribute(){
         return $this->first_name . ' ' . $this->last_name;

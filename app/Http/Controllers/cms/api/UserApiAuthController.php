@@ -16,19 +16,19 @@ class UserApiAuthController extends Controller
 
     public function login(Request $request){
         $validator = Validator($request->all(), [
-            'id' => 'required|numeric|exists:users,id',
+            'email' => 'required|exists:users,email',
             'password' => 'required|string'
         ]);
 
         if (!$validator->fails()) {
-            $user = User::where('id', $request->get('id'))->first();
+            $user = User::where('email', $request->get('email'))->first();
             $this->revokeActiveTokens($user->id);
             $response = Http::asForm()
                 ->post('http://127.0.0.1:8081/oauth/token', [
                     'grant_type' => 'password',
                     'client_id' => '2',
                     'client_secret' => 'wrdz9dk7RvcdN21zZgZp78vDiW0tooSlWvSVPo77',
-                    'username' => $request->get('id'),
+                    'username' => $request->get('email'),
                     'password' => $request->get('password'),
                     'scope' => '*',
                 ]);
