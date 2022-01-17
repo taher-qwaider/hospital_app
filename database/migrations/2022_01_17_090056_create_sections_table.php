@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsTable extends Migration
+class CreateSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('first_name', 45);
             $table->string('last_name', 45);
             $table->string('email')->unique();
             $table->integer('phone')->unique();
-            $table->string('address')->nullable();
+            $table->enum('gender', ['M', 'F']);
+            $table->string('address');
             $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
+//            $table->timestamp('email_verified_at')->nullable();
+//            $table->foreignId('city_id');
+//            $table->foreign('city_id')->references('id')->on('cities');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,6 +37,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('sections');
     }
 }
