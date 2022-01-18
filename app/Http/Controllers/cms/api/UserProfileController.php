@@ -45,12 +45,6 @@ class UserProfileController extends Controller
         }
     }
 
-    public function chats(Request $request){
-        if ($request->expectsJson()){
-            $adminId = Auth::guard('userApi')->user()->teacher->admin->id;
-            return response()->json(['status' => true, 'admin_id' => $adminId], 400);
-        }
-    }
     public function userSaveData(Request $request, $user): User
     {
         $user->full_name = $request->get('full_name');
