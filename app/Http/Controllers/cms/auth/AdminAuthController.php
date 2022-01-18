@@ -13,7 +13,7 @@ class AdminAuthController extends Controller
     //
 
     public function view(){
-            return response()->view('cms.auth.Adminlogin');
+        return response()->view('cms.auth.Adminlogin');
     }
     public function login(Request $request){
 //        dd($request->all());
