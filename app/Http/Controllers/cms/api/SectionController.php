@@ -13,7 +13,7 @@ class SectionController extends Controller
 
     public function index(){
         $data['sections'] = Section::all();
-
+        $data['status'] = true;
         return response()->json($data);
 
     }
@@ -23,6 +23,6 @@ class SectionController extends Controller
         $section = Section::where('id', $id)->first();
         $doctors = $section->doctors;
 
-        return response()->json(['doctors' => $doctors]);
+        return response()->json(['status' => true,'doctors' => $doctors]);
     }
 }

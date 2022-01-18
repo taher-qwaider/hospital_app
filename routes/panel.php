@@ -33,11 +33,15 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
 
     Route::post('image/store', [\App\Http\Controllers\cms\ImageController::class, 'store'])->name('image.store');
 
-    Route::resource('users', \App\Http\Controllers\cms\UserController::class)->middleware('permission:edit-users');
-    Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update'])->middleware('permission:edit-users');
-    Route::get('user/list', [\App\Http\Controllers\cms\UserController::class, 'getUsers'])->name('user.list')->middleware('permission:read-users');
-    Route::get('users/{user}/permissions', [\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'permission'])->middleware('permission:edit-users');
-    Route::post('users/permissions', [\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'store'])->middleware('permission:edit-users')->name('users.permission.store');
+    Route::resource('doctors', \App\Http\Controllers\cms\DoctorController::class)->middleware('permission:show_doctors');
+    Route::get('doctor/list', [\App\Http\Controllers\cms\DoctorController::class, 'getDoctor'])->name('doctors.list')->middleware('permission:show_doctors');
+    Route::post('doctors/{doctor}/update', [\App\Http\Controllers\cms\DoctorController::class, 'update'])->middleware('permission:edit_doctors')->name('doctors.update');
+
+    Route::resource('users', \App\Http\Controllers\cms\UserController::class)->middleware('permission:edit_users');
+    Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update'])->middleware('permission:edit_users');
+    Route::get('user/list', [\App\Http\Controllers\cms\UserController::class, 'getUsers'])->name('user.list')->middleware('permission:read_users');
+    Route::get('users/{user}/permissions', [\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'permission'])->middleware('permission:edit_users');
+    Route::post('users/permissions', [\App\Http\Controllers\cms\spatie\UserPermissionController::class, 'store'])->middleware('permission:edit_users')->name('users.permission.store');
     Route::resource('users.homeworks', \App\Http\Controllers\cms\UserHomeWorkController::class)->middleware('permission:edit-home-work');
     Route::get('user/{user}/homeworks/list', [\App\Http\Controllers\cms\UserHomeWorkController::class, 'gethomeworks'])->middleware('permission:read-home-work')->name('user.homework.list');
     Route::get('user/{user}/homeworks/print', [\App\Http\Controllers\cms\UserHomeWorkController::class, 'getPDF'])->name('users.homework.pdf');

@@ -27,10 +27,10 @@ class AdminAuthController extends Controller
             if(Auth::guard('admin')->attempt($credentials, $request->get('remember_me'))){
                 return response()->json(['message'=>'Login Successfully', 'user' => Auth::guard('admin')->user()], 200);
             }else{
-                return response()->json(['message'=>'Failed to Login check Credentials'], 200);
+                return response()->json(['message'=>'Failed to Login check Credentials'], 400);
             }
         }else{
-            return response()->json(['message'=>$validator->getMessageBag()->first()], 200);
+            return response()->json(['message'=>$validator->getMessageBag()->first()], 400);
         }
     }
 

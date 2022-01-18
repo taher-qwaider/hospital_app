@@ -9,7 +9,20 @@ class Doctor extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    public function getGenderAttribute($gender){
+        return (($gender == 'M') ? 'Male' : 'Female');
+    }
+
     public function section(){
-        $this->belongsTo(Section::class);
+        return $this->belongsTo(Section::class);
+    }
+
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+    public function image(){
+        return $this->morphOne(Image::class, 'object');
     }
 }

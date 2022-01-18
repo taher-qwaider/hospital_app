@@ -302,6 +302,33 @@
                                     class="m-menu__link-wrap"> <span class="m-menu__link-text">المستخدمين</span>
 									<span class="m-menu__link-badge"></span></span></span></span>
                     </li>
+
+                    @canany(['show_doctors', 'edit_doctors'])
+                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
+                            m-menu-submenu-toggle="hover">
+                            <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                                <i  class="m-menu__link-icon  fa fa-user"></i>
+                                <span class="m-menu__link-text">دكتور</span>
+                                <i class="m-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                                <ul class="m-menu__subnav">
+                                    @can('edit_doctors')
+                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('doctors.create') }}"
+                                                                                          class="m-menu__link "><i
+                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                                    class="m-menu__link-text">انشاء حساب جديد</span></a></li>
+                                    @endcan
+                                    @can('show_doctors')
+                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('doctors.index') }}"
+                                                                                          class="m-menu__link "><i
+                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                                    class="m-menu__link-text">عرض الكل</span></a></li>
+                                    @endcan
+                                </ul>
+                            </div>
+                        </li>
+                    @endcanany
                     @canany(['read-users', 'create-users'])
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                         m-menu-submenu-toggle="hover">
