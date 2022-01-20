@@ -37,6 +37,10 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
     Route::get('doctor/list', [\App\Http\Controllers\cms\DoctorController::class, 'getDoctor'])->name('doctors.list')->middleware('permission:show_doctors');
     Route::post('doctors/{doctor}/update', [\App\Http\Controllers\cms\DoctorController::class, 'update'])->middleware('permission:edit_doctors')->name('doctors.update');
 
+    Route::resource('sections', \App\Http\Controllers\cms\SectionController::class)->middleware('permission:show_sections');
+    Route::get('section/list', [\App\Http\Controllers\cms\SectionController::class, 'getSections'])->name('sections.list')->middleware('permission:show_sections');
+    Route::post('sections/{section}/update', [\App\Http\Controllers\cms\SectionController::class, 'update'])->middleware('permission:edit_sections')->name('sections.update');
+
     Route::resource('users', \App\Http\Controllers\cms\UserController::class)->middleware('permission:edit_users');
     Route::post('users/{user}/update', [\App\Http\Controllers\cms\UserController::class, 'update'])->middleware('permission:edit_users');
     Route::get('user/list', [\App\Http\Controllers\cms\UserController::class, 'getUsers'])->name('user.list')->middleware('permission:read_users');

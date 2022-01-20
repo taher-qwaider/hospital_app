@@ -31,7 +31,7 @@ class SectionController extends Controller
         return response()->view('cms.section.index');
     }
 
-    public function getsection(Request $request){
+    public function getSections(Request $request){
         if ($request->ajax()) {
             return DataTables::of(Section::all())
 //                ->addIndexColumn()
@@ -51,7 +51,7 @@ class SectionController extends Controller
 //                })
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $actionBtn = "<a href='/panel/admin/users/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='showAlert($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
+                    $actionBtn = "<a href='/panel/admin/sections/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='showAlert($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -67,8 +67,8 @@ class SectionController extends Controller
     public function create()
     {
         //
-        $cities = City::all();
-        return  response()->view('cms.section.create', ['cities' => $cities]);
+//        $cities = City::all();
+        return  response()->view('cms.section.create');
     }
 
     /**
@@ -82,37 +82,37 @@ class SectionController extends Controller
         //
 //        dump($request->all());
         $validator = Validator($request->all(), [
-            'full_name' => 'required|string|min:3',
-            'email' => 'required|email|unique:sections,email',
-            'phone' => 'required|digits:9|unique:sections,phone',
+            'name' => 'required|string|min:3',
+//            'email' => 'required|email|unique:sections,email',
+//            'phone' => 'required|digits:9|unique:sections,phone',
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
-            'gender' => 'required|in:M,F',
-            'city_id' => 'required|numeric|exists:cities,id',
-            'address' => 'required|string',
+//            'gender' => 'required|in:M,F',
+//            'city_id' => 'required|numeric|exists:cities,id',
+//            'address' => 'required|string',
         ]);
         if (!$validator->fails()){
             $data = [
-                'full_name' => $request->get('full_name'),
-                'email' => $request->get('email'),
-                'gender' => $request->get('gender'),
-                'phone' => $request->get('phone'),
-                'city_id' => $request->get('city_id'),
-                'address' => $request->get('address'),
-                'password' => $request->get('password') ?? Hash::make('password')
+                'name' => $request->get('name'),
+//                'email' => $request->get('email'),
+//                'gender' => $request->get('gender'),
+//                'phone' => $request->get('phone'),
+//                'city_id' => $request->get('city_id'),
+//                'address' => $request->get('address'),
+//                'password' => $request->get('password') ?? Hash::make('password')
             ];
-            $user = Section::updateOrCreate(['id' => 0], $data);
+            $section = Section::updateOrCreate(['id' => 0], $data);
             if ($request->hasFile('image')) {
                 $this->uploadFile($request->file('image'), 'images/sections/', 'public', 'section_' . time());
                 $image = new Image();
                 $image->path = $this->filePath;
-                $isSaved = $user->image()->save($image);
+                $isSaved = $section->image()->save($image);
             }else{
                 $image = new Image();
                 $image->path = 'images/avatar.png';
-                $isSaved = $user->image()->save($image);
+                $isSaved = $section->image()->save($image);
             }
 //            $user->assignRole('user');
-            return response()->json(['message' => $isSaved ? 'تم إنشاء المستخدم' : 'خطأ في إنشاء المستخدم', 'id' => $user->id], $isSaved ? 200 : 400);
+            return response()->json(['message' => $isSaved ? 'تم إنشاء المستخدم' : 'خطأ في إنشاء المستخدم'], $isSaved ? 200 : 400);
         }else
             return response()->json(['message' => $validator->getMessageBag()->first()], 400);
     }
@@ -157,23 +157,23 @@ class SectionController extends Controller
         //
 //        dd($request->all());
         $validator = Validator($request->all(), [
-            'full_name' => 'required|string|min:3',
-            'email' => 'required|email|unique:sections,email,'.$id,
-            'phone' => 'required|digits:9|unique:sections,phone,'.$id,
+            'name' => 'required|string|min:3',
+//            'email' => 'required|email|unique:sections,email,'.$id,
+//            'phone' => 'required|digits:9|unique:sections,phone,'.$id,
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
-            'gender' => 'required|in:M,F',
-            'city_id' => 'required|numeric|exists:cities,id',
-            'address' => 'required|string',
+//            'gender' => 'required|in:M,F',
+//            'city_id' => 'required|numeric|exists:cities,id',
+//            'address' => 'required|string',
         ]);
         if (!$validator->fails()){
             $data = [
-                'full_name' => $request->get('full_name'),
-                'email' => $request->get('email'),
-                'gender' => $request->get('gender'),
-                'teacher_id' => $request->get('teacher_id'),
-                'phone' => $request->get('phone'),
-                'city_id' => $request->get('city_id'),
-                'address' => $request->get('address'),
+                'name' => $request->get('name'),
+//                'email' => $request->get('email'),
+//                'gender' => $request->get('gender'),
+//                'teacher_id' => $request->get('teacher_id'),
+//                'phone' => $request->get('phone'),
+//                'city_id' => $request->get('city_id'),
+//                'address' => $request->get('address'),
             ];
             $user = Section::updateOrCreate(['id' => $id], $data);
             if ($request->hasFile('image')) {
