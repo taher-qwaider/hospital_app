@@ -13,16 +13,7 @@ class Admin extends Authenticatable
 {
     use HasFactory, SoftDeletes, HasRoles, HasApiTokens;
     protected $with = ['image', 'city'];
-    /**
-     * Find the user instance for the given username.
-     *
-     * @param  string  $username
-     * @return \App\Models\User
-     */
-    public function findForPassport($username)
-    {
-        return $this->where('id', $username)->first();
-    }
+
     public function getFullNameAttribute(){
         return $this->first_name . ' ' . $this->last_name;
     }
