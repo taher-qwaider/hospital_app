@@ -14,9 +14,6 @@ class Admin extends Authenticatable
     use HasFactory, SoftDeletes, HasRoles, HasApiTokens;
     protected $with = ['image', 'city'];
 
-    public function getFullNameAttribute(){
-        return $this->first_name . ' ' . $this->last_name;
-    }
 
     public function image(){
         return $this->morphOne(Image::class, 'object');

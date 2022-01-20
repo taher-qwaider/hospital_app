@@ -26,29 +26,29 @@
 {{--                                            <span class="m-widget1__desc">Awerage Weekly Profit</span>--}}
                                         </div>
                                         <div class="col m--align-right">
-{{--                                            <span class="m-widget1__number m--font-brand">{{ $users_count }}</span>--}}
+                                            <span class="m-widget1__number m--font-brand">{{ $users_count }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
                                         <div class="col">
-                                            <h3 class="m-widget1__title">المحفظين</h3>
+                                            <h3 class="m-widget1__title">الدكتورز</h3>
 {{--                                            <span class="m-widget1__desc">Weekly Customer Orders</span>--}}
                                         </div>
                                         <div class="col m--align-right">
-{{--                                            <span class="m-widget1__number m--font-danger">{{ $teachers_count }}</span>--}}
+                                            <span class="m-widget1__number m--font-danger">{{ $doctors_count }}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
                                         <div class="col">
-                                            <h3 class="m-widget1__title">المنشورات</h3>
+                                            <h3 class="m-widget1__title">القسام</h3>
 {{--                                            <span class="m-widget1__desc">System bugs and issues</span>--}}
                                         </div>
                                         <div class="col m--align-right">
-{{--                                            <span class="m-widget1__number m--font-success">{{ $posts_count }}</span>--}}
+                                            <span class="m-widget1__number m--font-success">{{ $sections_count }}</span>
                                         </div>
                                     </div>
                                 </div>

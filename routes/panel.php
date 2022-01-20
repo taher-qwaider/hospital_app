@@ -19,10 +19,9 @@ Route::get('storage/link', function (){
 Route::prefix('admin')->middleware('auth:admin')->group(function (){
     Route::get('/', function () {
 
-//        $data['users_count'] = \Illuminate\Support\Facades\Auth::guard('admin')->user()->users->count();
-//        $data['teachers_count'] = \Illuminate\Support\Facades\Auth::guard('admin')->user()->teachers->count();
-//        $data['posts_count'] = \Illuminate\Support\Facades\Auth::guard('admin')->user()->posts->count();
-        $data = [];
+        $data['users_count'] = \App\Models\User::all()->count();
+        $data['doctors_count'] = \App\Models\Doctor::all()->count();
+        $data['sections_count'] = \App\Models\Section::all()->count();
 
         return view('cms.dashboard', $data);
     })->name('dashboard');
