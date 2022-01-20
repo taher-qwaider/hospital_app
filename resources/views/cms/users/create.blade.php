@@ -19,37 +19,15 @@
                             <div class="m-portlet__body">
                                 <!--begin::Section-->
                                 <div class="form-group m-form__group row mb-25">
-                                    <label for="id" class="col-3 col-form-label">الرقم</label>
+                                    <label for="full_name" class="col-3 col-form-label">الاسم</label>
                                     <div class="col-9">
-                                        <input class="form-control m-input" disabled type="text" placeholder="الرقم" id="id">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row mb-25">
-                                    <label for="first_name" class="col-3 col-form-label">الاسم</label>
-                                    <div class="col-9">
-                                        <input class="form-control m-input" type="text" placeholder="الاسم" id="first_name">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row mb-25">
-                                    <label for="last_name" class="col-3 col-form-label">العائلة</label>
-                                    <div class="col-9">
-                                        <input class="form-control m-input" type="text" placeholder="الاسم" id="last_name">
+                                        <input class="form-control m-input" type="text" placeholder="الاسم" id="full_name">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="email" class="col-3 col-form-label">البريد الالكتروني</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="text" placeholder="البريد الالكتروني" id="email">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row mb-25">
-                                    <label for="level" class="col-3 col-form-label">المحفظ</label>
-                                    <div class="col-9">
-                                        <select class="form-control m-select2" id="teacher_id" name="teacher">
-                                            @foreach($teachers as $teacher)
-                                                <option value="{{$teacher->id}}">{{$teacher->full_name}}</option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row mb-25">
@@ -73,16 +51,6 @@
                                         <label for="female">Female
                                             <input class="form-control m-input col-md-4" name="gender" type="radio" id="female">
                                         </label>
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row mb-25">
-                                    <label for="level" class="col-3 col-form-label">المرحلة</label>
-                                    <div class="col-9">
-                                        <select class="form-control m-select2" id="level" name="param">
-                                                <option value="A">الإبتدائية</option>
-                                                <option value="B">الأعدادية</option>
-                                                <option value="C">الثانوية</option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row mb-25">
@@ -168,42 +136,18 @@
                 }
             });
         });
-        $(document).ready(function() {
-            $('#level').select2({
-                placeholder: "اختر ",
-                dir: "rtl",
-                language: {
-                    "noResults": function () {
-                        return "لا توجد نتائج";
-                    }
-                }
-            });
-        });
-        $(document).ready(function() {
-            $('#teacher_id').select2({
-                placeholder: "اختر ",
-                dir: "rtl",
-                language: {
-                    "noResults": function () {
-                        return "لا توجد نتائج";
-                    }
-                }
-            });
-        });
+
     </script>
     <script>
         function save(){
             var formData = new FormData();
-            formData.append('first_name', document.getElementById('first_name').value);
-            formData.append('last_name', document.getElementById('last_name').value);
+            formData.append('full_name', document.getElementById('full_name').value);
             formData.append('email', document.getElementById('email').value);
             formData.append('phone', document.getElementById('phone').value);
             formData.append('image', document.getElementById('image').files[0]);
             formData.append('gender', document.getElementById('male').checked ? 'M' : 'F');
-            formData.append('level', document.getElementById('level').value);
             formData.append('city_id', document.getElementById('city').value);
             formData.append('address', document.getElementById('address').value);
-            formData.append('teacher_id', document.getElementById('teacher_id').value);
             axios.post('{!! route('users.store') !!}', formData)
                 .then(function (response) {
                     console.log(response);

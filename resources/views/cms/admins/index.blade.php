@@ -35,7 +35,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>الأسم</th>
-                                            <th>العائلة</th>
+{{--                                            <th>العائلة</th>--}}
                                             <th>إيميل</th>
                                             <th>الهاتف</th>
                                             <th>المدينة</th>
@@ -71,8 +71,8 @@
                 ajax: "{{ route('admin.list') }}",
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'first_name', name: 'first_name'},
-                    {data: 'last_name', name: 'last_name'},
+                    {data: 'full_name', name: 'full_name'},
+                    // {data: 'last_name', name: 'last_name'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'city.name', name: 'city.name'},

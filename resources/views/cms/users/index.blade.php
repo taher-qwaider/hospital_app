@@ -35,14 +35,13 @@
                                         <tr>
                                             <th>#</th>
                                             <th>الأسم</th>
-                                            <th>العائلة</th>
                                             <th>إيميل</th>
                                             <th>الهاتف</th>
-                                            <th>المرحلة</th>
-                                            <th>المدرس</th>
+{{--                                            <th>المرحلة</th>--}}
+{{--                                            <th>المدرس</th>--}}
                                             <th>المدينة</th>
                                             <th>الصلاحيات</th>
-                                            <th>الواجبات</th>
+{{--                                            <th>الواجبات</th>--}}
                                             <th>إعدادات</th>
                                         </tr>
                                         </thead>
@@ -73,14 +72,13 @@
                 ajax: "{{ route('user.list') }}",
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'first_name', name: 'first_name'},
-                    {data: 'last_name', name: 'last_name'},
+                    {data: 'full_name', name: 'full_name'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
-                    {data: 'level', name: 'level'},
-                    {data: 'teacher.first_name', name: 'teacher.first_name'},
+                    // {data: 'level', name: 'level'},
+                    // {data: 'teacher.first_name', name: 'teacher.first_name'},
                     {data: 'city.name', name: 'city.name'},
-                    {data: 'homeworks', name: 'homeworks'},
+                    // {data: 'homeworks', name: 'homeworks'},
                     {data: 'permissions', name: 'permissions'},
                     {
                         data: 'action',

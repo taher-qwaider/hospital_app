@@ -30,17 +30,17 @@ class UserController extends Controller
 
     public function getUsers(Request $request){
         if ($request->ajax()) {
-            return DataTables::of(Auth::guard('admin')->user()->users()->with(['teacher', 'city'])->get())
+            return DataTables::of(User::with('city')->get())
                 ->addIndexColumn()
                 ->addColumn('permissions', function($row){
                     $actionBtn = "<a href='/panel/admin/users/$row->id/permissions' class='edit btn btn-success btn-sm'>$row->permissions_count صلاحيات</a>";
                     return $actionBtn;
                 })
-                ->addIndexColumn()
-                ->addColumn('homeworks', function($row){
-                    $actionBtn = "<a href='/panel/admin/users/$row->id/homeworks' class='edit btn btn-success btn-sm'>$row->permissions_count الواجبات</a>";
-                    return $actionBtn;
-                })
+//                ->addIndexColumn()
+//                ->addColumn('homeworks', function($row){
+//                    $actionBtn = "<a href='/panel/admin/users/$row->id/homeworks' class='edit btn btn-success btn-sm'>$row->permissions_count الواجبات</a>";
+//                    return $actionBtn;
+//                })
                 ->addIndexColumn()
                 ->addColumn('roles', function($row){
                     $actionBtn = "<a href='/panel/admin/user/$row->id/roles' class='edit btn btn-primary btn-sm'>$row->roles_count روول</a>";
@@ -51,7 +51,7 @@ class UserController extends Controller
                     $actionBtn = "<a href='/panel/admin/users/$row->id/edit' class='edit btn btn-success btn-sm'>Edit</a> <button onclick='showAlert($row->id)' class='delete btn btn-danger btn-sm'>Delete</button>";
                     return $actionBtn;
                 })
-                ->rawColumns(['action', 'permissions', 'roles', 'homeworks'])
+                ->rawColumns(['action', 'permissions', 'roles'])
                 ->make(true);
         }
     }
@@ -65,8 +65,7 @@ class UserController extends Controller
     {
         //
         $cities = City::all();
-        $teachers = Auth::guard('admin')->user()->teachers;
-        return  response()->view('cms.users.create', ['cities' => $cities, 'teachers' => $teachers]);
+        return  response()->view('cms.users.create', ['cities' => $cities]);
     }
 
     /**
@@ -80,23 +79,19 @@ class UserController extends Controller
         //
 //        dump($request->all());
         $validator = Validator($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'full_name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|digits:9|unique:users,phone',
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
             'gender' => 'required|in:M,F',
-            'level' => 'required|in:A,B,C',
             'city_id' => 'required|numeric|exists:cities,id',
             'address' => 'required|string',
         ]);
         if (!$validator->fails()){
             $data = [
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
+                'full_name' => $request->get('full_name'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
-                'teacher_id' => $request->get('teacher_id'),
                 'phone' => $request->get('phone'),
                 'city_id' => $request->get('city_id'),
                 'address' => $request->get('address'),
@@ -113,7 +108,7 @@ class UserController extends Controller
                 $image->path = 'images/avatar.png';
                 $isSaved = $user->image()->save($image);
             }
-            $user->assignRole('user');
+//            $user->assignRole('user');
             return response()->json(['message' => $isSaved ? 'تم إنشاء المستخدم' : 'خطأ في إنشاء المستخدم', 'id' => $user->id], $isSaved ? 200 : 400);
         }else
             return response()->json(['message' => $validator->getMessageBag()->first()], 400);
@@ -141,11 +136,9 @@ class UserController extends Controller
         //
         $user = User::find($id);
         $cities = City::all();
-        $teachers = Auth::guard('admin')->user()->teachers;
         return response()->view('cms.users.edit', [
             'user'=>$user,
             'cities' => $cities,
-            'teachers' => $teachers
         ]);
     }
 
@@ -161,23 +154,19 @@ class UserController extends Controller
         //
 //        dd($request->all());
         $validator = Validator($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'full_name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email,'.$id,
             'phone' => 'required|digits:9|unique:users,phone,'.$id,
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
             'gender' => 'required|in:M,F',
-            'level' => 'required|in:A,B,C',
             'city_id' => 'required|numeric|exists:cities,id',
             'address' => 'required|string',
         ]);
         if (!$validator->fails()){
             $data = [
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
+                'full_name' => $request->get('full_name'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
-                'teacher_id' => $request->get('teacher_id'),
                 'phone' => $request->get('phone'),
                 'city_id' => $request->get('city_id'),
                 'address' => $request->get('address'),
