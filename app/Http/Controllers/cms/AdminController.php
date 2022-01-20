@@ -70,11 +70,11 @@ class AdminController extends Controller
     {
         //
         $validator = Validator($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'full_name' => 'required|string|min:3',
+//            'last_name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|digits:9|unique:users,phone',
-            'image' => 'required|image|mimes:jpg,jpeg,png',
+//            'image' => 'required|image|mimes:jpg,jpeg,png',
             'city_id' => 'required|numeric|exists:cities,id',
             'address' => 'required|string',
         ]);
@@ -88,7 +88,7 @@ class AdminController extends Controller
                 $image->path = $this->filePath;
                 $isSaved = $admin->image()->save($image);
             }
-            $admin->assignRole('admin');
+//            $admin->assignRole('admin');
             return response()->json(['message' => $isSaved ? 'تم إنشاء المسئوول' : 'خطأ في إنشاء المسئوول', 'id' => $admin->id], $isSaved ? 200 : 400);
         }else
             return response()->json(['message' => $validator->getMessageBag()->first()], 400);
@@ -178,7 +178,8 @@ class AdminController extends Controller
         $admin->email = $request->get('email');
         $admin->phone = $request->get('phone');
         $admin->address = $request->get('address');
-//        $admin->password = Hash::make('password');
+        $admin->city_id = $request->get('city_id');
+        $admin->password = Hash::make('password');
         $admin->save();
         $admin = $admin->refresh();
         return $admin;
