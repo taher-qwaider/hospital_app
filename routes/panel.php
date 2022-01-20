@@ -51,7 +51,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
     Route::get('user/{user}/homeworks/print', [\App\Http\Controllers\cms\UserHomeWorkController::class, 'getPDF'])->name('users.homework.pdf');
 
     Route::resource('admins', \App\Http\Controllers\cms\AdminController::class)->middleware('permission:edit-admins');
-    Route::post('admins/{admin}/update', [\App\Http\Controllers\cms\AdminController::class, 'update'])->middleware('permission:edit-admins');
+    Route::post('admins/{admin}/update', [\App\Http\Controllers\cms\AdminController::class, 'update'])->middleware('permission:edit_admins');
     Route::get('admin/list', [\App\Http\Controllers\cms\AdminController::class, 'getAdmins'])->name('admin.list')->middleware('permission:read-admins');
     Route::get('admins/{admin}/permissions', [\App\Http\Controllers\cms\spatie\AdminPermissionController::class, 'permission'])->middleware('permission:edit-admins')->name('admin.permissions');
     Route::post('admins/{admin}/permissions', [\App\Http\Controllers\cms\spatie\AdminPermissionController::class, 'store'])->middleware('permission:edit-admins');

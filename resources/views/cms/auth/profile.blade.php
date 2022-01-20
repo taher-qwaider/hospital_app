@@ -19,15 +19,9 @@
                             <div class="m-portlet__body">
                                 <!--begin::Section-->
                                 <div class="form-group m-form__group row mb-25">
-                                    <label for="first_name" class="col-3 col-form-label">الاسم</label>
+                                    <label for="full_name" class="col-3 col-form-label">الاسم</label>
                                     <div class="col-9">
-                                        <input class="form-control m-input" type="text" value="{{ $admin->first_name }}" id="first_name">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row mb-25">
-                                    <label for="example-text-input" class="col-3 col-form-label">العائلة</label>
-                                    <div class="col-9">
-                                        <input class="form-control m-input" type="text" value="{{ $admin->last_name }}" id="last_name">
+                                        <input class="form-control m-input" type="text" value="{{ $admin->full_name }}" id="full_name">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row mb-25">
@@ -48,16 +42,16 @@
                                         <input class="form-control m-input" type="file" placeholder="الصورة" id="image">
                                     </div>
                                 </div>
-                                <div class="form-group m-form__group row mb-25">
-                                    <label for="example-text-input" class="col-3 col-form-label">المدينة</label>
-                                    <div class="col-9">
-                                        <select class="form-control m-select2" id="city" name="param">
-                                            @foreach($cities as $city)
-                                                <option value="{{ $city->id }}" @if($admin->city->id == $city->id) selected  @endif>{{ $city->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group m-form__group row mb-25">--}}
+{{--                                    <label for="example-text-input" class="col-3 col-form-label">المدينة</label>--}}
+{{--                                    <div class="col-9">--}}
+{{--                                        <select class="form-control m-select2" id="city" name="param">--}}
+{{--                                            @foreach($cities as $city)--}}
+{{--                                                <option value="{{ $city->id }}" @if($admin->city->id == $city->id) selected  @endif>{{ $city->name }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="address" class="col-3 col-form-label">العنوان</label>
                                     <div class="col-9">
@@ -112,12 +106,12 @@
     <script>
         function save(id){
             var formData = new FormData();
-            formData.append('first_name', document.getElementById('first_name').value);
-            formData.append('last_name', document.getElementById('last_name').value);
+            formData.append('full_name', document.getElementById('full_name').value);
+            // formData.append('last_name', document.getElementById('last_name').value);
             formData.append('email', document.getElementById('email').value);
             formData.append('phone', document.getElementById('phone').value);
             formData.append('image', document.getElementById('image').files[0]);
-            formData.append('city_id', document.getElementById('city').value);
+            // formData.append('city_id', document.getElementById('city').value);
             formData.append('address', document.getElementById('address').value);
             axios.post('/panel/admin/admins/'+id+'/update', formData)
                 .then(function (response) {

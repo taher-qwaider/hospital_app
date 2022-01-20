@@ -133,22 +133,24 @@ class AdminController extends Controller
     {
         //
         $validator = Validator($request->all(), [
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
+            'full_name' => 'required|string|min:3',
+//            'last_name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email,'.$id,
             'phone' => 'required|digits:9|unique:users,phone,'.$id,
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
-            'city_id' => 'required|numeric|exists:cities,id',
-            'address' => 'required|string',
+//            'city_id' => 'required|numeric|exists:cities,id',
+//            'address' => 'required|string',
         ]);
         if (!$validator->fails()){
             $admin = Admin::find($id);
             $admin = $this->saveData($request, $admin);
             $isSaved = $admin->save();
             if ($request->hasFile('image')) {
-                Storage::disk('public')->delete($admin->image->path);
-                $this->uploadFile($request->file('image'), 'images/admins/', 'public', 'user_' . time() . '.jpg');
-                $image = $admin->image;
+                if (isset($admin->image)) {
+                    Storage::disk('public')->delete($admin->image->path);
+                }
+                $this->uploadFile($request->file('image'), 'images/admins/', 'public', 'user_' . time() );
+                $image = $admin->image ?? new Image();
                 $image->path = $this->filePath;
                 $admin->image()->save($image);
             }
@@ -171,13 +173,12 @@ class AdminController extends Controller
     }
     public function saveData(Request $request, $admin): Admin
     {
-        $admin->first_name = $request->get('first_name');
-        $admin->last_name = $request->get('last_name');
+        $admin->full_name = $request->get('full_name');
+//        $admin->last_name = $request->get('last_name');
         $admin->email = $request->get('email');
         $admin->phone = $request->get('phone');
-        $admin->city_id = $request->get('city_id');
         $admin->address = $request->get('address');
-        $admin->password = Hash::make('password');
+//        $admin->password = Hash::make('password');
         $admin->save();
         $admin = $admin->refresh();
         return $admin;
