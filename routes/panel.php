@@ -61,18 +61,18 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
 //    Route::get('teachers/{teacher}/permissions', [\App\Http\Controllers\cms\spatie\TeacherPermissionController::class, 'permission'])->middleware('permission:edit-teachers');
 //    Route::post('teachers/permissions', [\App\Http\Controllers\cms\spatie\TeacherPermissionController::class, 'store'])->middleware('permission:edit-teachers')->name('teacher.permissions.store');
 
-    Route::resource('permissions', \App\Http\Controllers\cms\spatie\PermissionController::class)->middleware('permission:edit-permissions');
-    Route::get('permission/list', [\App\Http\Controllers\cms\spatie\PermissionController::class, 'getPermissions'])->middleware('permission:edit-permissions')->name('permission.list');
+    Route::resource('permissions', \App\Http\Controllers\cms\spatie\PermissionController::class)->middleware('permission:edit_permissions');
+    Route::get('permission/list', [\App\Http\Controllers\cms\spatie\PermissionController::class, 'getPermissions'])->middleware('permission:edit_permissions')->name('permission.list');
 
-    Route::resource('roles', \App\Http\Controllers\cms\spatie\RoleController::class)->middleware('permission:edit-roles');
-    Route::get('role/list', [\App\Http\Controllers\cms\spatie\RoleController::class, 'getRoles'])->middleware('permission:edit-roles')->name('role.list');
-    Route::get('roles/{role}/permissions', [\App\Http\Controllers\cms\spatie\RolePermissionController::class, 'permission'])->middleware('permission:edit-roles');
-    Route::post('roles/{role}/permissions', [\App\Http\Controllers\cms\spatie\RolePermissionController::class, 'store'])->middleware('permission:edit-roles');
+    Route::resource('roles', \App\Http\Controllers\cms\spatie\RoleController::class)->middleware('permission:edit_roles');
+    Route::get('role/list', [\App\Http\Controllers\cms\spatie\RoleController::class, 'getRoles'])->middleware('permission:edit_roles')->name('role.list');
+    Route::get('roles/{role}/permissions', [\App\Http\Controllers\cms\spatie\RolePermissionController::class, 'permission'])->middleware('permission:edit_roles');
+    Route::post('roles/{role}/permissions', [\App\Http\Controllers\cms\spatie\RolePermissionController::class, 'store'])->middleware('permission:edit_roles');
 
     Route::get('logout',[ \App\Http\Controllers\cms\auth\AdminAuthController::class, 'logout'])->name('admin.logout');
 
-    Route::resource('cities', \App\Http\Controllers\cms\CityController::class)->middleware('permission:edit-cities');
-    Route::get('city/list', [\App\Http\Controllers\cms\CityController::class, 'getCites'])->middleware('permission:edit-cities')->name('city.list');
+    Route::resource('cities', \App\Http\Controllers\cms\CityController::class)->middleware('permission:edit_cities');
+    Route::get('city/list', [\App\Http\Controllers\cms\CityController::class, 'getCites'])->middleware('permission:edit_cities')->name('city.list');
 //
 //    Route::resource('posts', \App\Http\Controllers\cms\PostController::class)->middleware('permission:edit-posts');
 //    Route::get('post/list', [\App\Http\Controllers\cms\PostController::class, 'getPosts'])->middleware('permission:edit-posts')->name('post.list');

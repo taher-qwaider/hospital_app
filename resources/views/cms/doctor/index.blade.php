@@ -73,7 +73,7 @@
                     {data: 'full_name', name: 'full_name'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
-                    {data: 'section.full_name', name: 'section.full_name'},
+                    {data: 'section.name', name: 'section.name'},
                     {data: 'gender', name: 'gender'},
                     {data: 'city.name', name: 'city.name'},
                     {

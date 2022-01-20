@@ -33,6 +33,7 @@ class RolesTableSeeder extends Seeder
             'full_name' =>'Super Admin',
             'email' => 'info@admin.com',
             'phone' => '2547896',
+            'city_id' => '1',
             'password' => Hash::make('12345678'),
         ]);
 
@@ -45,8 +46,7 @@ class RolesTableSeeder extends Seeder
         $permission[]=[];
         $tables_in_db = DB::select('SHOW TABLES');
         $db = "Tables_in_".env('DB_DATABASE');
-//        $tables = ['album_images','orders','post_tags','migrations','model_has_permissions','model_has_roles','password_resets','permissions','role_has_permissions','images','social_media','service_features','service_technics','visitor_message_replays','visitor_messages','front_social_media','order_replays','project_images',''];
-        $tables = [];
+        $tables = ['oauth_access_tokens', 'oauth_auth_codes', 'oauth_clients', 'personal_access_tokens', 'oauth_personal_access_clients', 'oauth_refresh_tokens','album_images','orders','post_tags','migrations','model_has_permissions','model_has_roles','password_resets','role_has_permissions','images','social_media','service_features','service_technics','visitor_message_replays','visitor_messages','front_social_media','order_replays','project_images',''];
         foreach($tables_in_db as $table){
             if(!in_array($table->{$db},$tables)) {
                 $show_permission = Permission::create([
