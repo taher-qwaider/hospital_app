@@ -20,6 +20,7 @@ Route::prefix('doctors')->group(function (){
 
 Route::prefix('sections')->group(function (){
     Route::get('index', [\App\Http\Controllers\cms\api\SectionController::class, 'index']);
+    Route::get('{section}/doctors', [\App\Http\Controllers\cms\api\SectionController::class, 'doctors']);
 });
 
 Route::prefix('users')->group(function (){

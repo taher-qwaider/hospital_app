@@ -4,7 +4,7 @@
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8"/>
-    <title>الوقار | @yield('title')</title>
+    <title>@yield('title')</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -57,7 +57,8 @@
                     <div class="m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-stack__item--middle m-brand__logo">
                             <a href="index.html" class="m-brand__logo-wrapper">
-                                <img alt="" src="{{ asset('assets/img/logo/logo_default_dark.png') }}"/>
+{{--                                <img alt="" src="{{ asset('assets/img/logo/logo_default_dark.png') }}"/>--}}
+                                <span>Hospital</span>
                             </a>
                         </div>
                         <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -507,7 +508,7 @@
                                     class="m-menu__link-icon fas fa-circle"></i><span class="m-menu__link-text">المدن</span></a>
                         </li>
                     @endcan
-                    @can('read-settings')
+                    @can('show_settings')
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                             m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i
                                     class="m-menu__link-icon fa fa-cog"></i><span
@@ -515,14 +516,14 @@
                                     class="m-menu__ver-arrow la la-angle-right"></i></a>
                             <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                                 <ul class="m-menu__subnav">
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('settings.index', 'general') }}"
+                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('settings.index') }}"
                                                                                       class="m-menu__link "><i
                                                 class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                                 class="m-menu__link-text">اعدادات الموقع</span></a></li>
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('settings.index', 'social') }}"
-                                                                                      class="m-menu__link "><i
-                                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                class="m-menu__link-text">مواقع التواصل الاجتماعي</span></a></li>
+{{--                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('settings.index', 'social') }}"--}}
+{{--                                                                                      class="m-menu__link "><i--}}
+{{--                                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span--}}
+{{--                                                class="m-menu__link-text">مواقع التواصل الاجتماعي</span></a></li>--}}
                                 </ul>
                             </div>
                         </li>

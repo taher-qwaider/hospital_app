@@ -20,7 +20,7 @@ class SectionController extends Controller
 
     public function doctors($id)
     {
-        $section = Section::where('id', $id)->first();
+        $section = Section::where('id', $id)->with('doctors')->first();
         $doctors = $section->doctors;
 
         return response()->json(['status' => true,'doctors' => $doctors]);

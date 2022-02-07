@@ -1,12 +1,12 @@
 @extends('cms.parent')
 
-@section('title', 'مواقع التواصل الإجتماعي')
+@section('title', 'إعدادات')
 
 @section('styles')
 
 @endsection
 
-@section('sub-title', 'مواقع التواصل الإجتماعي')
+@section('sub-title', 'إعدادات')
 
 @section('main-content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -22,7 +22,7 @@
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
                                         <h3 class="m-portlet__head-text">
-                                            مواقع التواصل الإجتماعي
+                                            إعدادات
                                         </h3>
                                     </div>
                                 </div>
@@ -30,19 +30,19 @@
                             <div class="m-portlet__body">
                                 @foreach($socials as $social)
                                     @switch($social->key)
-                                        @case('googlePlay')
+                                        @case('phone')
                                             <div class="form-group m-form__group row mb-25">
                                                 <label for="googlePlay" class="col-3 col-form-label">رابط Google Play</label>
                                                 <div class="col-9">
-                                                    <input class="form-control m-input" type="text" placeholder="رابط Google Play" value="{{$social->value}}" id="googlePlay">
+                                                    <input class="form-control m-input" type="text" placeholder="phone" value="{{$social->value}}" id="phone">
                                                 </div>
                                             </div>
                                         @break
-                                        @case('appStore')
+                                        @case('email')
                                             <div class="form-group m-form__group row mb-25">
                                                 <label for="appStore" class="col-3 col-form-label">رابط App Store</label>
                                                 <div class="col-9">
-                                                    <input class="form-control m-input" type="text" placeholder="رابط App Store" value="{{$social->value}}" id="appStore">
+                                                    <input class="form-control m-input" type="email" placeholder="email" value="{{$social->value}}" id="email">
                                                 </div>
                                             </div>
                                         @break
@@ -54,13 +54,21 @@
                                                 </div>
                                             </div>
                                         @break
-                                        @case('youtube')
+                                        @case('about_us')
                                             <div class="form-group m-form__group row mb-25">
                                                 <label for="youtube" class="col-3 col-form-label">رابط Youtube</label>
                                                 <div class="col-9">
-                                                    <input class="form-control m-input" type="text" placeholder="رابط Youtube" value="{{$social->value}}" id="youtube">
+                                                    <textarea class="form-control m-input" type="text" placeholder="about_us" value="{{$social->value}}" id="about_us"></textarea>
                                                 </div>
                                             </div>
+                                        @break
+                                        @case('board_directors')
+                                        <div class="form-group m-form__group row mb-25">
+                                            <label for="youtube" class="col-3 col-form-label">board_directors</label>
+                                            <div class="col-9">
+                                                <textarea class="form-control m-input" type="text" placeholder="board_directors" value="{{$social->value}}" id="board_directors"></textarea>
+                                            </div>
+                                        </div>
                                         @break
                                     @endswitch
                                 @endforeach
@@ -71,7 +79,7 @@
                         <div class="m-portlet m-portlet--tab">
                             <div class="m-portlet__body">
                                 <div class="m-portlet__head-title col-sm-12">
-                                    <button type="button" onclick="save('{!! $subject !!}')" class="btn btn-success col-sm-12">حفظ</button>
+                                    <button type="button" onclick="save()" class="btn btn-success col-sm-12">حفظ</button>
                                 </div>
                             </div>
                         </div>

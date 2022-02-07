@@ -14,16 +14,11 @@ class SettingController extends Controller
      * @param $subject
      * @return \Illuminate\Http\Response
      */
-    public function index($subject)
+    public function index()
     {
         //
-        if ($subject == 'general'){
-            $generals = Setting::where('subject', 'general')->get();
-            return response()->view('cms.settings.general', ['generals' => $generals, 'subject' =>$subject]);
-        }elseif ($subject == 'social'){
-            $socials = Setting::where('subject', 'social')->get();
-            return response()->view('cms.settings.socials', ['socials' => $socials, 'subject' =>$subject]);
-        }
+        $socials = Setting::all();
+        return response()->view('cms.settings.socials', ['socials' => $socials]);
     }
 
     /**

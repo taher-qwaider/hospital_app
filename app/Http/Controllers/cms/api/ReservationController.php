@@ -20,7 +20,7 @@ class ReservationController extends Controller
         ]);
         if (!$validator->fails()){
             Mail::to($user->email)->send(new ReservationEmail($user));
-            return response()->json(['status' => true, 'message' => 'Reservation Email send Successfully'], 200);
+            return response()->json(['status' => true, 'message' => 'تم إرسال الإيميل بنجاح'], 200);
 
         }else
             return response()->json(['status' => false, 'message' => $validator->getMessageBag()->first()], 200);

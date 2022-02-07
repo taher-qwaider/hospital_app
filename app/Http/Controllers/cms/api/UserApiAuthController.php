@@ -102,7 +102,7 @@ class UserApiAuthController extends Controller
     public function refreshToken(Request $request){
 
         $validator = Validator($request->all(), [
-            'id' => 'required|numeric|exists:users,id',
+            'email' => 'required|numeric|exists:users,email',
             'refresh_token' => 'exits:oauth_refresh_tokens,id'
         ]);
 

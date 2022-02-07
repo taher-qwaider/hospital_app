@@ -17,23 +17,25 @@ class SettingSeeder extends Seeder
         //
 
         Setting::create([
-            'subject' => 'socials',
-            'key' => 'googlePlay',
+            'key' => 'phone',
             'value' => ''
         ]);
         Setting::create([
-            'subject' => 'socials',
-            'key' => 'appStore',
-            'value' => ''
-        ]);
-        Setting::create([
-            'subject' => 'socials',
             'key' => 'facebook',
             'value' => ''
         ]);
         Setting::create([
-            'subject' => 'socials',
-            'key' => 'youtube',
+            'key' => 'email',
+            'value' => ''
+        ]);
+        Setting::create([
+            'key' => 'about_us',
+            'value' => ''
+        ]);
+
+
+        Setting::create([
+            'key' => 'board_directors',
             'value' => ''
         ]);
     }

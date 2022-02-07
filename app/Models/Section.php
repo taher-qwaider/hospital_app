@@ -12,7 +12,7 @@ class Section extends Model
     protected $guarded = [];
 
     public function doctors(){
-        $this->hasMany(Doctor::class);
+        return $this->hasMany(Doctor::class);
     }
 
 

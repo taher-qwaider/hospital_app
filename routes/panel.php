@@ -73,7 +73,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
 
     Route::resource('cities', \App\Http\Controllers\cms\CityController::class)->middleware('permission:edit_cities');
     Route::get('city/list', [\App\Http\Controllers\cms\CityController::class, 'getCites'])->middleware('permission:edit_cities')->name('city.list');
-//
+
 //    Route::resource('posts', \App\Http\Controllers\cms\PostController::class)->middleware('permission:edit-posts');
 //    Route::get('post/list', [\App\Http\Controllers\cms\PostController::class, 'getPosts'])->middleware('permission:edit-posts')->name('post.list');
 //    Route::post('posts/{post}/update', [\App\Http\Controllers\cms\PostController::class, 'update'])->middleware('permission:edit-posts');
@@ -81,8 +81,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
 //    Route::get('messages', [\App\Http\Controllers\cms\MessageController::class, 'index'])->middleware('permission:read-messages')->name('messages.index');
 //    Route::get('messages/{message}/markRead',[\App\Http\Controllers\cms\MessageController::class, 'markRead'])->middleware('permission:read-messages');
 //
-//    Route::get('settings/{subject}', [\App\Http\Controllers\cms\SettingController::class, 'index'])->middleware('Permission:read-settings')->name('settings.index');
-//    Route::put('settings/{subject}', [\App\Http\Controllers\cms\SettingController::class, 'update'])->middleware('Permission:edit-settings')->name('settings.save');
+    Route::get('settings', [\App\Http\Controllers\cms\SettingController::class, 'index'])->middleware('permission:show_settings')->name('settings.index');
+    Route::put('settings', [\App\Http\Controllers\cms\SettingController::class, 'update'])->middleware('permission:edit_settings')->name('settings.save');
 });
 
 Route::prefix('admin')->middleware('guest:admin')->group(function (){
