@@ -12,8 +12,8 @@ class SectionController extends Controller
     //
 
     public function index(){
-        $data['sections'] = Section::all();
         $data['status'] = true;
+        $data['data'] = Section::all();
         return response()->json($data);
 
     }
@@ -23,6 +23,6 @@ class SectionController extends Controller
         $section = Section::where('id', $id)->with('doctors')->first();
         $doctors = $section->doctors;
 
-        return response()->json(['status' => true,'doctors' => $doctors]);
+        return response()->json(['status' => true,'data' => $doctors]);
     }
 }

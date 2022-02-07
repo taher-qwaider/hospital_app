@@ -82,7 +82,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
 //    Route::get('messages/{message}/markRead',[\App\Http\Controllers\cms\MessageController::class, 'markRead'])->middleware('permission:read-messages');
 //
     Route::get('settings', [\App\Http\Controllers\cms\SettingController::class, 'index'])->middleware('permission:show_settings')->name('settings.index');
-    Route::put('settings', [\App\Http\Controllers\cms\SettingController::class, 'update'])->middleware('permission:edit_settings')->name('settings.save');
+    Route::put('settings/update', [\App\Http\Controllers\cms\SettingController::class, 'update'])->middleware('permission:edit_settings')->name('settings.save');
 });
 
 Route::prefix('admin')->middleware('guest:admin')->group(function (){

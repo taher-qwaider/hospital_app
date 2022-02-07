@@ -19,8 +19,8 @@ class HomeController extends Controller
 //    }
     public function home(){
         $data['status'] = true;
-        $data['sections'] = Section::all();
-        $data['doctors'] = Doctor::all();
+        $data['data']['sections'] = Section::all();
+        $data['data']['doctors'] = Doctor::all();
 
         return response()->json($data);
 

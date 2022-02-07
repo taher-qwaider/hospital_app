@@ -32,7 +32,7 @@
                                     @switch($social->key)
                                         @case('phone')
                                             <div class="form-group m-form__group row mb-25">
-                                                <label for="googlePlay" class="col-3 col-form-label">رابط Google Play</label>
+                                                <label for="phone" class="col-3 col-form-label">الهاتف</label>
                                                 <div class="col-9">
                                                     <input class="form-control m-input" type="text" placeholder="phone" value="{{$social->value}}" id="phone">
                                                 </div>
@@ -40,7 +40,7 @@
                                         @break
                                         @case('email')
                                             <div class="form-group m-form__group row mb-25">
-                                                <label for="appStore" class="col-3 col-form-label">رابط App Store</label>
+                                                <label for="email" class="col-3 col-form-label">البريد الإلكتروني</label>
                                                 <div class="col-9">
                                                     <input class="form-control m-input" type="email" placeholder="email" value="{{$social->value}}" id="email">
                                                 </div>
@@ -48,7 +48,7 @@
                                         @break
                                         @case('facebook')
                                             <div class="form-group m-form__group row mb-25">
-                                                <label for=facebook" class="col-3 col-form-label">رابط Facebook</label>
+                                                <label for=facebook" class="col-3 col-form-label"> الفيسبوك</label>
                                                 <div class="col-9">
                                                     <input class="form-control m-input" type="text" placeholder="رابط Facebook" value="{{$social->value}}" id="facebook">
                                                 </div>
@@ -56,17 +56,17 @@
                                         @break
                                         @case('about_us')
                                             <div class="form-group m-form__group row mb-25">
-                                                <label for="youtube" class="col-3 col-form-label">رابط Youtube</label>
+                                                <label for="about_us" class="col-3 col-form-label">نظرة عن المستشفى</label>
                                                 <div class="col-9">
-                                                    <textarea class="form-control m-input" type="text" placeholder="about_us" value="{{$social->value}}" id="about_us"></textarea>
+                                                    <textarea class="form-control m-input" type="text" placeholder="about_us" id="about_us">{{$social->value}}</textarea>
                                                 </div>
                                             </div>
                                         @break
                                         @case('board_directors')
                                         <div class="form-group m-form__group row mb-25">
-                                            <label for="youtube" class="col-3 col-form-label">board_directors</label>
+                                            <label for="board_directors" class="col-3 col-form-label">مجلس الإدارة</label>
                                             <div class="col-9">
-                                                <textarea class="form-control m-input" type="text" placeholder="board_directors" value="{{$social->value}}" id="board_directors"></textarea>
+                                                <textarea class="form-control m-input" type="text" placeholder="" id="board_directors">{{$social->value}}</textarea>
                                             </div>
                                         </div>
                                         @break
@@ -94,10 +94,13 @@
 @section('scripts')
 <script>
     function save(subject) {
-        axios.put('/panel/admin/settings/'+subject, {
-            @foreach($socials as $social)
-                '{!! $social->key !!}' : document.getElementById('{!! $social->key !!}').value,
-            @endforeach
+        axios.put('/panel/admin/settings/update', {
+            'phone' : document.getElementById('phone').value,
+            'email' : document.getElementById('email').value,
+            'facebook' : document.getElementById('facebook').value,
+            'about_us' : document.getElementById('about_us').value,
+            'board_directors' : document.getElementById('board_directors').value,
+
         })
             .then(function (response) {
                 console.log(response);

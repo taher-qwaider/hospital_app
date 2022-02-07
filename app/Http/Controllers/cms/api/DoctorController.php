@@ -11,7 +11,7 @@ class DoctorController extends Controller
     //
     public function index(){
         $data['status'] = true;
-        $data['doctors'] = Doctor::all();
+        $data['data'] = Doctor::all();
 
         return response()->json($data);
 

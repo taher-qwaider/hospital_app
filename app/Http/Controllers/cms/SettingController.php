@@ -71,7 +71,7 @@ class SettingController extends Controller
      * @param $subject
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $subject)
+    public function update(Request $request)
     {
         //
 //        dd($request->all());
