@@ -22,7 +22,7 @@
                                 <div class="m-widget1__item">
                                     <div class="row m-row--no-padding align-items-center">
                                         <div class="col">
-                                            <h3 class="m-widget1__title">الطلاب</h3>
+                                            <h3 class="m-widget1__title">المستخدمين</h3>
 {{--                                            <span class="m-widget1__desc">Awerage Weekly Profit</span>--}}
                                         </div>
                                         <div class="col m--align-right">

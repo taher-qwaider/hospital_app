@@ -35,6 +35,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>الأسم</th>
+                                            <th>التخصص</th>
                                             <th>إيميل</th>
                                             <th>الهاتف</th>
                                             <th>القسم</th>
@@ -71,6 +72,7 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'full_name', name: 'full_name'},
+                    {data: 'specialty', name: 'specialty'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'section.name', name: 'section.name'},

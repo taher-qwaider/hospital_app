@@ -25,6 +25,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row mb-25">
+                                    <label for="specialty" class="col-3 col-form-label">التخصص</label>
+                                    <div class="col-9">
+                                        <input class="form-control m-input" type="text" value="{{ $doctor->specialty }}" id="specialty">
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row mb-25">
                                     <label for="example-text-input" class="col-3 col-form-label">البريد الالكتروني</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="text" value="{{ $doctor->email }}" id="email">
@@ -136,6 +142,7 @@
             formData.append('city_id', document.getElementById('city').value);
             formData.append('address', document.getElementById('address').value);
             formData.append('section_id', document.getElementById('section_id').value);
+            formData.append('specialty', document.getElementById('specialty').value);
 
             axios.post('{!! route('doctors.update', $doctor->id) !!}', formData)
                 .then(function (response) {

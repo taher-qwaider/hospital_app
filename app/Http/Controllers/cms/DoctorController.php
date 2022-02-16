@@ -85,6 +85,7 @@ class DoctorController extends Controller
 //        dump($request->all());
         $validator = Validator($request->all(), [
             'full_name' => 'required|string|min:3',
+            'specialty' => 'required|string|min:3',
             'email' => 'required|email|unique:doctors,email',
             'phone' => 'required|digits:9|unique:doctors,phone',
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
@@ -96,13 +97,14 @@ class DoctorController extends Controller
         if (!$validator->fails()){
             $data = [
                 'full_name' => $request->get('full_name'),
+                'specialty' => $request->get('specialty'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
                 'phone' => $request->get('phone'),
                 'city_id' => $request->get('city_id'),
                 'section_id' => $request->get('section_id'),
                 'address' => $request->get('address'),
-                'password' => Hash::make($request->get('password')) ?? Hash::make('password')
+                'password' => $request->get('password') ? Hash::make($request->get('password')) : Hash::make('password')
             ];
             $user = Doctor::updateOrCreate(['id' => 0], $data);
             if ($request->hasFile('image')) {
@@ -112,7 +114,7 @@ class DoctorController extends Controller
                 $isSaved = $user->image()->save($image);
             }else{
                 $image = new Image();
-                $image->path = 'images/avatar.png';
+                $image->path = 'images/doctor_avatar.jpg';
                 $isSaved = $user->image()->save($image);
             }
 //            $user->assignRole('user');
@@ -175,6 +177,7 @@ class DoctorController extends Controller
         if (!$validator->fails()){
             $data = [
                 'full_name' => $request->get('full_name'),
+                'specialty' => $request->get('specialty'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
                 'phone' => $request->get('phone'),

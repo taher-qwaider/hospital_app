@@ -8,8 +8,9 @@ trait FileUpload
 {
     protected String $filePath;
 
-    function uploadFile(UploadedFile $uploadedFile, $folder, $disk = 'public', $filename)
+    function uploadFile(UploadedFile $uploadedFile, $folder, $disk, $filename)
     {
+        $disk = $disk ?? 'public';
         $name = !is_null($filename) ? $filename : Str::random(10);
         $this->filePath = $folder . $name . '.' . $uploadedFile->getClientOriginalExtension();
         $imageFullName = $name . '.' . $uploadedFile->getClientOriginalExtension();

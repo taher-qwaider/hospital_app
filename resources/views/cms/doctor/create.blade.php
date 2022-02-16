@@ -27,6 +27,13 @@
                                 </div>
 
                                 <div class="form-group m-form__group row mb-25">
+                                    <label for="specialty" class="col-3 col-form-label">التخصص</label>
+                                    <div class="col-9">
+                                        <input class="form-control m-input" type="text" placeholder="التخصص" id="specialty">
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-form__group row mb-25">
                                     <label for="email" class="col-3 col-form-label">البريد الالكتروني</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="text" placeholder="البريد الالكتروني" id="email">
@@ -37,7 +44,7 @@
                                     <div class="col-9">
                                         <select class="form-control m-select2" id="section_id" >
                                             @foreach($sections as $section)
-                                                <option value="{{$section->id}}">{{$section->full_name}}</option>
+                                                <option value="{{$section->id}}">{{$section->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -171,6 +178,7 @@
             formData.append('city_id', document.getElementById('city').value);
             formData.append('address', document.getElementById('address').value);
             formData.append('section_id', document.getElementById('section_id').value);
+            formData.append('specialty', document.getElementById('specialty').value);
             axios.post('{!! route('doctors.store') !!}', formData)
                 .then(function (response) {
                     console.log(response);
