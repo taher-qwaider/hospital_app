@@ -12,17 +12,21 @@ class ReservationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected   $user;
+    protected $user;
+    protected $doctor;
+    protected $date;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($user, $doctor, $date)
     {
         //
         $this->user = $user;
+        $this->doctor = $doctor;
+        $this->date = $date;
     }
 
     /**
@@ -32,9 +36,11 @@ class ReservationEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('example@example.com')
+        return $this->from('support@hospital.pah.ps')
             ->markdown('emails.ReservationEmail', [
-            'user' =>$this->user
+            'user' =>$this->user,
+            'doctor_name' => $this->doctor,
+            'date' => $this->date
         ]);
     }
 }

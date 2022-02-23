@@ -13,3 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('users/changePassword/{token}', [\App\Http\Controllers\cms\auth\ForgetPasswordController::class, 'changeForgetPassword'])
+    ->name('user.password.reset');
+
+Route::get('users/resetPassword/{token}', [\App\Http\Controllers\cms\auth\ForgetPasswordController::class, 'resetForgetPassword'])
+    ->name('password.reset');
