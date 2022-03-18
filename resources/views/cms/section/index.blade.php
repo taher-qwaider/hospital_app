@@ -1,13 +1,13 @@
 @extends('cms.parent')
 
-@section('title', 'القسام')
+@section('title', 'العيادات الخارجية')
 
 @section('styles')
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/js/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
-@section('sub-title', 'القسام')
+@section('sub-title', 'العيادات الخارجية')
 
 @section('main-content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -88,7 +88,6 @@
         function showAlert(id){
             Swal.fire({
                 title: 'هل انت متأكد',
-                text: "لن تستطيع المستخدم",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

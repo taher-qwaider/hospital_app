@@ -1,10 +1,10 @@
 @component('mail::message')
-# Introduction
+# Forget Passord Email
 
-The body of your message.
+Click the button bellow to change your password
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => route('user.password.reset', $user->password_token)])
+Rest Password
 @endcomponent
 
 Thanks,<br>

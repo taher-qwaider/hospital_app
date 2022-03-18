@@ -70,6 +70,14 @@
                                             </div>
                                         </div>
                                         @break
+                                        @case('reservation_email')
+                                        <div class="form-group m-form__group row mb-25">
+                                            <label for="reservation_email" class="col-3 col-form-label">اللإيميل الحجوزات</label>
+                                            <div class="col-9">
+                                                <textarea class="form-control m-input" type="text" placeholder="" id="reservation_email">{{$social->value}}</textarea>
+                                            </div>
+                                        </div>
+                                        @break
                                     @endswitch
                                 @endforeach
                             </div>
@@ -96,6 +104,7 @@
     function save(subject) {
         axios.put('/panel/admin/settings/update', {
             'phone' : document.getElementById('phone').value,
+            'reservation_email' : document.getElementById('reservation_email').value,
             'email' : document.getElementById('email').value,
             'facebook' : document.getElementById('facebook').value,
             'about_us' : document.getElementById('about_us').value,

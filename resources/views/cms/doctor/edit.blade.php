@@ -1,12 +1,12 @@
 @extends('cms.parent')
 
-@section('title', 'تعديل مستخدم')
+@section('title', 'تعديل')
 
 @section('styles')
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 @endsection
 
-@section('sub-title', 'تعديل مستخدم ')
+@section('sub-title', 'تعديل ')
 
 @section('main-content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -24,12 +24,21 @@
                                         <input class="form-control m-input" type="text" value="{{ $doctor->full_name }}" id="full_name">
                                     </div>
                                 </div>
-                                <div class="form-group m-form__group row mb-25">
+
+                                 <div class="form-group m-form__group row mb-25">
                                     <label for="specialty" class="col-3 col-form-label">التخصص</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="text" value="{{ $doctor->specialty }}" id="specialty">
                                     </div>
                                 </div>
+
+                                <div class="form-group m-form__group row mb-25">
+                                    <label for="desc" class="col-3 col-form-label">الوصف</label>
+                                    <div class="col-9">
+                                        <input class="form-control m-input" type="text"value="{{ $doctor->desc }}" id="desc">
+                                    </div>
+                                </div>
+
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="example-text-input" class="col-3 col-form-label">البريد الالكتروني</label>
                                     <div class="col-9">
@@ -41,23 +50,25 @@
                                     <div class="col-9">
                                         <select class="form-control m-select2" id="section_id" name="teacher">
                                             @foreach($sections as $section)
-                                                <option value="{{$section->id}}" @if($doctor->section->id == $section->id) selected  @endif>{{$section->full_name}}</option>
+                                                <option value="{{$section->id}}" >{{$section->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                {{--
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="example-text-input" class="col-3 col-form-label">الرقم</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="tel" value="{{ $doctor->phone }}" id="phone">
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="example-text-input" class="col-3 col-form-label">الصورة</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="file" placeholder="الصورة" id="image">
                                     </div>
                                 </div>
+                                {{--
                                 <div class="form-group m-form__group row mb-25">
 
                                     <div class="col-1">
@@ -85,7 +96,7 @@
                                     <div class="col-9">
                                         <textarea class="form-control m-input" rows="5" type="text" id="address">{{ $doctor->address }}</textarea>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>
@@ -136,17 +147,21 @@
             var formData = new FormData();
             formData.append('full_name', document.getElementById('full_name').value);
             formData.append('email', document.getElementById('email').value);
-            formData.append('phone', document.getElementById('phone').value);
+            //formData.append('phone', document.getElementById('phone').value);
             formData.append('image', document.getElementById('image').files[0]);
-            formData.append('gender', document.getElementById('male').checked ? 'M' : 'F');
-            formData.append('city_id', document.getElementById('city').value);
-            formData.append('address', document.getElementById('address').value);
+            //formData.append('gender', document.getElementById('male').checked ? 'M' : 'F');
+            //formData.append('city_id', document.getElementById('city').value);
+            //formData.append('address', document.getElementById('address').value);
             formData.append('section_id', document.getElementById('section_id').value);
-            formData.append('specialty', document.getElementById('specialty').value);
+                        formData.append('specialty', document.getElementById('specialty').value);
+
+                        formData.append('desc', document.getElementById('desc').value);
+
 
             axios.post('{!! route('doctors.update', $doctor->id) !!}', formData)
                 .then(function (response) {
                     console.log(response);
+                    window.location.href = '{!! route('doctors.index') !!}'
                     showConfirm(response.data.message, true);
                     // document.getElementById('name').value = '';
                 })

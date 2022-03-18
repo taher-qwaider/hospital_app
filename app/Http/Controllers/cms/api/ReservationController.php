@@ -4,12 +4,12 @@ namespace App\Http\Controllers\cms\api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ReservationEmail;
-use App\Models\Doctor;
-use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Setting;
+
 
 class ReservationController extends Controller
 {
@@ -18,8 +18,7 @@ class ReservationController extends Controller
     public function sendReservationEmail(Request $request){
         $user = Auth::guard('userApi')->user();
         $validator = Validator(['email'=>$user->email], [
-            'email' => 'email|exists:users,email',
-//            'doctor_name'=>  'required|exists:doctors,id'
+            'email' => 'email|exists:users,email'
         ]);
         if (!$validator->fails()){
             $reservation_email = Setting::where('key', 'reservation_email')->first();

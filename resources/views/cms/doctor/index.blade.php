@@ -1,13 +1,13 @@
 @extends('cms.parent')
 
-@section('title', 'المستخدمين')
+@section('title', 'اطباء العيادات الخارجية')
 
 @section('styles')
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/js/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
-@section('sub-title', 'المستخدمين')
+@section('sub-title', 'اطباء العيادات الخارجية')
 
 @section('main-content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -36,11 +36,11 @@
                                             <th>#</th>
                                             <th>الأسم</th>
                                             <th>التخصص</th>
+                                            <th>الوصف</th>
                                             <th>إيميل</th>
-                                            <th>الهاتف</th>
+{{--                                            <th>الهاتف</th>--}}
                                             <th>القسم</th>
                                             <th>الجنس</th>
-                                            <th>المدينة</th>
                                             <th>إعدادات</th>
                                         </tr>
                                         </thead>
@@ -73,11 +73,11 @@
                     {data: 'id', name: 'id'},
                     {data: 'full_name', name: 'full_name'},
                     {data: 'specialty', name: 'specialty'},
+                    {data: 'desc', name: 'desc'},
                     {data: 'email', name: 'email'},
-                    {data: 'phone', name: 'phone'},
+                    // {data: 'phone', name: 'phone'},
                     {data: 'section.name', name: 'section.name'},
                     {data: 'gender', name: 'gender'},
-                    {data: 'city.name', name: 'city.name'},
                     {
                         data: 'action',
                         name: 'action',
@@ -95,7 +95,7 @@
         function showAlert(id){
             Swal.fire({
                 title: 'هل انت متأكد',
-                text: "لن تستطيع المستخدم",
+                text: "",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -108,7 +108,7 @@
             })
         }
         function destroy(id){
-            axios.delete('/panel/admin/users/'+id)
+            axios.delete('/panel/admin/doctors/'+id)
                 .then(function (response) {
                     console.log(response.data.message);
                     showConfirm(response.data.message, true);

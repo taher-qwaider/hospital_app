@@ -98,7 +98,7 @@ class SectionController extends Controller
 //                'phone' => $request->get('phone'),
 //                'city_id' => $request->get('city_id'),
 //                'address' => $request->get('address'),
-//                'password' => $request->get('password') ?? Hash::make('password')
+
             ];
             $section = Section::updateOrCreate(['id' => 0], $data);
             if ($request->hasFile('image')) {
@@ -108,7 +108,7 @@ class SectionController extends Controller
                 $isSaved = $section->image()->save($image);
             }else{
                 $image = new Image();
-                $image->path = 'images/avatar.png';
+                $image->path = 'images/section_avatar.png';
                 $isSaved = $section->image()->save($image);
             }
 //            $user->assignRole('user');

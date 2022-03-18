@@ -30,7 +30,7 @@ class UserController extends Controller
 
     public function getUsers(Request $request){
         if ($request->ajax()) {
-            return DataTables::of(User::with('city')->get())
+            return DataTables::of(User::all())
                 ->addIndexColumn()
                 ->addColumn('permissions', function($row){
                     $actionBtn = "<a href='/panel/admin/users/$row->id/permissions' class='edit btn btn-success btn-sm'>$row->permissions_count صلاحيات</a>";

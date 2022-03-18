@@ -26,7 +26,7 @@ class UserProfileController extends Controller
             $validator = Validator($request->all(), [
                 'full_name' =>'required|string|min:3',
                 'email' =>'required|email|unique:users,email,'.$user->id,
-                'phone' =>'required|digits:9|unique:users,phone,'.$user->id,
+                'phone' =>'required|digits:10|unique:users,phone,'.$user->id,
                 'gender' =>'required|string|in:M,F',
                 'address' =>'required|string|min:5',
             ]);
@@ -51,7 +51,7 @@ class UserProfileController extends Controller
         $user->email = $request->get('email');
         $user->phone = $request->get('phone');
         $user->gender = $request->get('gender');
-        $user->level = $request->get('level');
+        //$user->level = $request->get('level');
         $user->address = $request->get('address');
         return $user;
     }

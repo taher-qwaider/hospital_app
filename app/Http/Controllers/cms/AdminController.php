@@ -83,6 +83,8 @@ class AdminController extends Controller
             $admin = $this->saveData($request, $admin);
             $isSaved = $admin->save();
             if ($request->hasFile('image')) {
+                $admin->image()->delete();
+
                 $this->uploadFile($request->file('image'), 'images/admins/', 'public', 'user_' . time() . '.jpg');
                 $image = new Image();
                 $image->path = $this->filePath;

@@ -1,77 +1,125 @@
-<!doctype html>
+
+<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic - #1 Selling Bootstrap 5 HTML Multi-demo Admin Dashboard ThemePurchase: https://1.envato.market/EA4JPWebsite: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.-->
 <html lang="en">
-  <head>
-  	<title>الوقار | تسجيل الدخول</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <link href="{{ asset('assets/js/toastr/build/toastr.css') }}" rel="stylesheet" type="text/css">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<link rel="stylesheet" href="{{ asset('assets/loginassets/css/style.css') }}">
-      <link href="{{ asset('assets/css/vendors.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
+	<!--begin::Head-->
+	<head><base href="../../../">
+		<meta charset="utf-8" />
+		<title>تسجيل الدخول</title>
+		<meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
+		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular 11, VueJs, React, Laravel, admin themes, web design, figma, web development, ree admin themes, bootstrap admin, bootstrap dashboard" />
+		<link rel="canonical" href="Https://preview.keenthemes.com/metronic8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="metronic/media/logos/favicon.ico" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link href="{{ asset('metronic/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ asset('metronic/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
 	</head>
-	<body class="img js-fullheight" style="background-image: url({{ asset('assets/loginassets/images/bg.jpg') }});">
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">الكنز | مسؤوول</h2>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-md-6 col-lg-4">
-					<div class="login-wrap p-0">
-		      	<h3 class="mb-4 text-center">هل لديك حساب</h3>
-		      	<form action="#" class="signin-form">
-		      		<div class="form-group">
-		      			<input type="email" class="form-control" id="email" placeholder="الرقم" required>
-		      		</div>
-	            <div class="form-group">
-	              <input id="password" type="password" class="form-control" placeholder="كلمة السر" required>
-	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-	            </div>
-	            <div class="form-group">
-	            	<button type="button" onclick="preformLogin()" class="form-control btn btn-primary submit px-3">تسجيل الدخول</button>
-	            </div>
-	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-		            	<label class="checkbox-wrap checkbox-primary">تذكرني
-                              <input type="checkbox" id="remember_me" checked>
-                              <span class="checkmark"></span>
-                        </label>
-                    </div>
-                <div class="w-50 text-md-right">
-                    <a href="{{ route('forgetPassword') }}" style="color: #fff">نسيت كلمت السر</a>
-                </div>
-	            </div>
-	          </form>
-	          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-	          <div class="social d-flex text-center">
-{{--	          	<a href="{{ route('teacher.login.view') }}" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span>محفظ</a>--}}
-{{--	          	<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>--}}
-	          </div>
-		      </div>
-				</div>
-			</div>
-		</div>
-	</section>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="bg-white">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Authentication - Sign-in -->
+			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(metronic/media/illustrations/progress-hd.png)">
+				<!--begin::Content-->
+				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+					<!--begin::Logo-->
+					<a href="index.html" class="mb-12">
+						{{-- <img alt="Logo" src="metronic/media/logos/logo-2-dark.svg" class="h-45px" /> --}}
+					</a>
+					<!--end::Logo-->
+					<!--begin::Wrapper-->
+					<div class="w-lg-500px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto">
+						<!--begin::Form-->
+						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form">
+							<!--begin::Heading-->
+							<div class="text-center mb-10">
+								<!--begin::Title-->
+								<h1 class="text-dark mb-3">Sign In</h1>
+								<!--end::Title-->
+								<!--begin::Link-->
+								<!--end::Link-->
+							</div>
+							<!--begin::Heading-->
+							<!--begin::Input group-->
+							<div class="fv-row mb-10">
+								<!--begin::Label-->
+								<label class="form-label fs-6 fw-bolder text-dark">Email</label>
+								<!--end::Label-->
+								<!--begin::Input-->
+								<input class="form-control form-control-lg form-control-solid" type="text" name="email" id="email"/>
+								<!--end::Input-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Input group-->
+							<div class="fv-row mb-10">
+								<!--begin::Wrapper-->
+								<div class="d-flex flex-stack mb-2">
+									<!--begin::Label-->
+									<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
+									<!--end::Label-->
+									<!--begin::Link-->
+									{{-- <a href="authentication/flows/basic/password-reset.html" class="link-primary fs-6 fw-bolder">Forgot Password ?</a> --}}
+									<!--end::Link-->
+								</div>
+								<!--end::Wrapper-->
+								<!--begin::Input-->
+								<input class="form-control form-control-lg form-control-solid" type="password" name="password" id="password" autocomplete="off" />
+								<!--end::Input-->
+							</div>
+							<!--end::Input group-->
+							<!--begin::Actions-->
+							<div class="text-center">
+								<!--begin::Submit button-->
+								<button type="button" id="kt_sign_in_submit" onclick="preformLogin()" class="btn btn-lg btn-primary w-100 mb-5">
+									<span class="indicator-label">تسجل دخول</span>
+									<span class="indicator-progress">Please wait...
+									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+								</button>
+								<!--end::Submit button-->
+								<!--begin::Separator-->
 
-	<script src="{{ asset('assets/loginassets/js/jquery.min.js') }}"></script>
-{{--    <script src="{{ asset('assets/loginassets/js/popper.js') }}"></script>--}}
-    <script src="{{ asset('assets/loginassets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/loginassets/js/main.js') }}"></script>
-{{--    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>--}}
-    <script src="{{ asset('js/axios.min.js') }}"></script>
+								<!--end::Google link-->
+							</div>
+							<!--end::Actions-->
+						</form>
+						<!--end::Form-->
+					</div>
+					<!--end::Wrapper-->
+				</div>
+				<!--end::Content-->
+			</div>
+			<!--end::Authentication - Sign-in-->
+		</div>
+		<!--end::Main-->
+		<!--begin::Javascript-->
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script src="{{ asset('metronic/plugins/global/plugins.bundle.js') }}"></script>
+		<script src="{{ asset('metronic/js/scripts.bundle.js') }}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		{{-- <script src="{{ asset('metronic/js/custom/authentication/sign-in/general.js') }}"></script> --}}
+		<!--end::Page Custom Javascript-->
+		<script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('assets/js/toastr/build/toastr.min.js') }}" type="text/javascript"></script>
     <script>
         function preformLogin(){
             let data = {
                 email:document.getElementById('email').value,
                 password:document.getElementById('password').value,
-                remember_me:document.getElementById('remember_me').checked,
+                //remember_me:document.getElementById('remember_me').checked,
             };
             axios.post('/panel/admin/login', data)
                 .then(function (response) {
@@ -110,6 +158,7 @@
         }
 
     </script>
+		<!--end::Javascript-->
 	</body>
+	<!--end::Body-->
 </html>
-

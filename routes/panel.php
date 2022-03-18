@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('storage/link', function (){
-    \Illuminate\Support\Facades\Artisan::call('Storage:link');
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function (){
@@ -25,6 +25,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
 
         return view('cms.dashboard', $data);
     })->name('dashboard');
+
 
     Route::get('profile', [\App\Http\Controllers\cms\auth\AdminAuthController::class, 'profile'])->name('auth.profile');
     Route::get('changePassword', [\App\Http\Controllers\cms\auth\AdminAuthController::class, 'changePassword'])->name('changePassword');
@@ -74,10 +75,14 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
     Route::resource('cities', \App\Http\Controllers\cms\CityController::class)->middleware('permission:edit_cities');
     Route::get('city/list', [\App\Http\Controllers\cms\CityController::class, 'getCites'])->middleware('permission:edit_cities')->name('city.list');
 
-//    Route::resource('posts', \App\Http\Controllers\cms\PostController::class)->middleware('permission:edit-posts');
-//    Route::get('post/list', [\App\Http\Controllers\cms\PostController::class, 'getPosts'])->middleware('permission:edit-posts')->name('post.list');
-//    Route::post('posts/{post}/update', [\App\Http\Controllers\cms\PostController::class, 'update'])->middleware('permission:edit-posts');
-//
+    Route::resource('events', \App\Http\Controllers\cms\EventControlller::class);
+    Route::get('event/list', [\App\Http\Controllers\cms\EventControlller::class, 'getEvents'])->name('event.list');
+    Route::post('events/{event}/update', [\App\Http\Controllers\cms\EventControlller::class, 'update'])->name('events.update');
+
+    Route::resource('medicalSections', \App\Http\Controllers\cms\MedicalSectionControlller::class);
+    Route::get('medicalSection/list', [\App\Http\Controllers\cms\MedicalSectionControlller::class, 'getMedicalSections'])->name('medicalSection.list');
+    Route::post('medicalSections/{medicalSection}/update', [\App\Http\Controllers\cms\MedicalSectionControlller::class, 'update'])->name('medicalSections.update');
+
 //    Route::get('messages', [\App\Http\Controllers\cms\MessageController::class, 'index'])->middleware('permission:read-messages')->name('messages.index');
 //    Route::get('messages/{message}/markRead',[\App\Http\Controllers\cms\MessageController::class, 'markRead'])->middleware('permission:read-messages');
 //

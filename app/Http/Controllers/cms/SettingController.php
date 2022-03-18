@@ -80,7 +80,7 @@ class SettingController extends Controller
             $social->value = $value;
             $social->save();
         }
-        return response()->json(['message' => 'تم التحديث بناجاح']);
+        return response()->json(['message' => 'تم التحديث بنجاح']);
     }
 
     /**

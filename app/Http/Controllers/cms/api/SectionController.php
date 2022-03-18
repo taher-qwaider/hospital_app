@@ -18,11 +18,11 @@ class SectionController extends Controller
 
     }
 
-    public function doctors($id)
+    public function doctors()
     {
-        $section = Section::where('id', $id)->with('doctors')->first();
-        $doctors = $section->doctors;
+        $section = Section::with('doctors')->get();
+        //$doctors = $section->doctors;
 
-        return response()->json(['status' => true,'data' => $doctors]);
+        return response()->json(['status' => true,'data' => $section]);
     }
 }

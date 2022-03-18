@@ -319,8 +319,8 @@
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                             m-menu-submenu-toggle="hover">
                             <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                                <i  class="m-menu__link-icon  fa fa-user"></i>
-                                <span class="m-menu__link-text">دكتور</span>
+                                <i  class="m-menu__link-icon fa fa-user"></i>
+                                <span class="m-menu__link-text">اطباء العيادات الخارجية</span>
                                 <i class="m-menu__ver-arrow la la-angle-right"></i>
                             </a>
                             <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
@@ -329,7 +329,7 @@
                                         <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('doctors.create') }}"
                                                                                           class="m-menu__link "><i
                                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                    class="m-menu__link-text">انشاء حساب جديد</span></a></li>
+                                                    class="m-menu__link-text">انشاء جديد</span></a></li>
                                     @endcan
                                     @can('show_doctors')
                                         <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('doctors.index') }}"
@@ -345,8 +345,8 @@
                         <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                             m-menu-submenu-toggle="hover">
                             <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                                <i  class="m-menu__link-icon  fa fa-user"></i>
-                                <span class="m-menu__link-text">القسام</span>
+                                <i  class="m-menu__link-icon  fa fa-hotel"></i>
+                                <span class="m-menu__link-text">العيادات الخارجية</span>
                                 <i class="m-menu__ver-arrow la la-angle-right"></i>
                             </a>
                             <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
@@ -355,7 +355,7 @@
                                         <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('sections.create') }}"
                                                                                           class="m-menu__link "><i
                                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                    class="m-menu__link-text">انشاء حساب جديد</span></a></li>
+                                                    class="m-menu__link-text">انشاء جديد</span></a></li>
                                     @endcan
                                     @can('show_sections')
                                         <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('sections.index') }}"
@@ -367,102 +367,95 @@
                             </div>
                         </li>
                     @endcanany
-                    @canany(['show_users', 'edit_users'])
-                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
+                    <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
                         m-menu-submenu-toggle="hover">
                         <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                            <i  class="m-menu__link-icon  fa fa-user"></i>
-                            <span class="m-menu__link-text">مستخدمي الموقع</span>
+                                <i  class="m-menu__link-icon  fa fa-newspaper"></i>
+                            <span class="m-menu__link-text">الأخبار و الحملات</span>
                             <i class="m-menu__ver-arrow la la-angle-right"></i>
                         </a>
                         <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                             <ul class="m-menu__subnav">
-                                @can('edit_users')
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('users.create') }}"
-                                                                                      class="m-menu__link "><i
-                                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                class="m-menu__link-text">انشاء حساب جديد</span></a></li>
-                                @endcan
-                                @can('show_users')
-                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('users.index') }}"
-                                                                                          class="m-menu__link "><i
-                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                    class="m-menu__link-text">عرض الكل</span></a></li>
-                                @endcan
+                                <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('events.create') }}"
+                                                                                  class="m-menu__link "><i
+                                            class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                            class="m-menu__link-text">انشاء جديد</span></a></li>
+                                <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('events.index') }}"
+                                                                                  class="m-menu__link "><i
+                                            class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                            class="m-menu__link-text">عرض الكل</span></a></li>
                             </ul>
                         </div>
                     </li>
-                    @endcanany
-                    @canany(['edit_admins', 'show_admins'])
-                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
-                            m-menu-submenu-toggle="hover">
-                            <a href="javascript:;" class="m-menu__link m-menu__toggle">
-                                <i  class="m-menu__link-icon  fa fa-suitcase"></i>
-                                <span class="m-menu__link-text">حسابات الادارة</span>
-                                <i class="m-menu__ver-arrow la la-angle-right"></i>
-                            </a>
-                            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-                                <ul class="m-menu__subnav">
-                                    @canany('edit_admins')
-                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('admins.create') }}"
-                                                                                          class="m-menu__link "><i
-                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                    class="m-menu__link-text">انشاء حساب جديد</span></a></li>
-                                    @endcanany
-                                    @canany('show_users')
-                                            <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('admins.index') }}"
-                                                                                              class="m-menu__link "><i
-                                                        class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                        class="m-menu__link-text">عرض الكل</span></a></li>
-                                    @endcanany
-                                </ul>
-                            </div>
-                        </li>
-                    @endcanany
-
-{{--                    @canany(['read-teachers', 'create-teachers'])--}}
+                    <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
+                        m-menu-submenu-toggle="hover">
+                        <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                            <i  class="m-menu__link-icon  fa fa-align-justify"></i>
+                            <span class="m-menu__link-text">الأقسام الطبية</span>
+                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                        </a>
+                        <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+                            <ul class="m-menu__subnav">
+                                <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('medicalSections.create') }}"
+                                                                                  class="m-menu__link "><i
+                                            class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                            class="m-menu__link-text">انشاء جديد</span></a></li>
+                                <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('medicalSections.index') }}"
+                                                                                  class="m-menu__link "><i
+                                            class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                            class="m-menu__link-text">عرض الكل</span></a></li>
+                            </ul>
+                        </div>
+                    </li>
+{{--                    @canany(['show_users', 'edit_users'])--}}
+{{--                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"--}}
+{{--                        m-menu-submenu-toggle="hover">--}}
+{{--                        <a href="javascript:;" class="m-menu__link m-menu__toggle">--}}
+{{--                            <i  class="m-menu__link-icon  fa fa-user"></i>--}}
+{{--                            <span class="m-menu__link-text">مستخدمي الموقع</span>--}}
+{{--                            <i class="m-menu__ver-arrow la la-angle-right"></i>--}}
+{{--                        </a>--}}
+{{--                        <div class="m-menu__submenu "><span class="m-menu__arrow"></span>--}}
+{{--                            <ul class="m-menu__subnav">--}}
+{{--                                @can('edit_users')--}}
+{{--                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('users.create') }}"--}}
+{{--                                                                                      class="m-menu__link "><i--}}
+{{--                                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span--}}
+{{--                                                class="m-menu__link-text">انشاء حساب جديد</span></a></li>--}}
+{{--                                @endcan--}}
+{{--                                @can('show_users')--}}
+{{--                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('users.index') }}"--}}
+{{--                                                                                          class="m-menu__link "><i--}}
+{{--                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span--}}
+{{--                                                    class="m-menu__link-text">عرض الكل</span></a></li>--}}
+{{--                                @endcan--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    @endcanany--}}
+{{--                    @canany(['edit_admins', 'show_admins'])--}}
 {{--                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"--}}
 {{--                            m-menu-submenu-toggle="hover">--}}
 {{--                            <a href="javascript:;" class="m-menu__link m-menu__toggle">--}}
-{{--                                <i  class="m-menu__link-icon  fa fa-user"></i>--}}
-{{--                                <span class="m-menu__link-text">المحفيظين</span>--}}
+{{--                                <i  class="m-menu__link-icon  fa fa-suitcase"></i>--}}
+{{--                                <span class="m-menu__link-text">حسابات الادارة</span>--}}
 {{--                                <i class="m-menu__ver-arrow la la-angle-right"></i>--}}
 {{--                            </a>--}}
 {{--                            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>--}}
 {{--                                <ul class="m-menu__subnav">--}}
-{{--                                    @can('create-teachers')--}}
-{{--                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('teachers.create') }}"--}}
-{{--                                                                                          class="m-menu__link "><i--}}
-{{--                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span--}}
-{{--                                                    class="m-menu__link-text">انشاء حساب جديد</span></a></li>--}}
-{{--                                    @endcan--}}
-{{--                                    @can('read-teachers')--}}
-{{--                                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('teachers.index') }}"--}}
-{{--                                                                                          class="m-menu__link "><i--}}
-{{--                                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span--}}
-{{--                                                    class="m-menu__link-text">عرض الكل</span></a></li>--}}
-{{--                                    @endcan--}}
+{{--                                    @canany('show_admins')--}}
+{{--                                            <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('admins.index') }}"--}}
+{{--                                                                                              class="m-menu__link "><i--}}
+{{--                                                        class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span--}}
+{{--                                                        class="m-menu__link-text">عرض الكل</span></a></li>--}}
+{{--                                    @endcanany--}}
 {{--                                </ul>--}}
 {{--                            </div>--}}
 {{--                        </li>--}}
 {{--                    @endcanany--}}
-{{--                    @can('read-posts')--}}
-{{--                        <li class="m-menu__item m-menu__item--submenu pl-3" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon 	fa fa-newspaper"></i><span class="m-menu__link-text">المنشورات</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>--}}
-{{--                            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>--}}
-{{--                                <ul class="m-menu__subnav">--}}
-{{--                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('posts.index') }}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">كل المنشورات</span></a></li>--}}
-{{--                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('posts.create') }}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">إنشاء جديد</span></a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
-{{--                    @can('read-messages')--}}
-{{--                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"--}}
-{{--                            m-menu-submenu-toggle="hover"><a href="{{ route('messages.index') }}"--}}
-{{--                                                             class="m-menu__link m-menu__toggle"><i--}}
-{{--                                    class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text"> إرسال إشعارات للمستخدمين</span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
+
+
+
                     <li class="m-menu__item  m-menu__item--active" aria-haspopup="true"><span
                             class="m-menu__link "><span class="m-menu__link-title"> <span
                                     class="m-menu__link-wrap"> <span class="m-menu__link-text">إعدادات الموقع</span>
@@ -488,46 +481,6 @@
                             </div>
                         </li>
                     @endcan
-{{--                   @can('read-permissions')--}}
-                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
-                            m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i
-                                    class="m-menu__link-icon  fa fa-user"></i><span
-                                    class="m-menu__link-text">الصلاحيات</span><i
-                                    class="m-menu__ver-arrow la la-angle-right"></i></a>
-                            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-                                <ul class="m-menu__subnav">
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('permissions.index') }}"
-                                                                                      class="m-menu__link "><i
-                                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                class="m-menu__link-text">عرض الكل</span></a></li>
-                                </ul>
-                            </div>
-                        </li>
-{{--                   @endcan--}}
-{{--                    @can('read-roles')--}}
-                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
-                            m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i
-                                    class="m-menu__link-icon  fa fa-user"></i><span
-                                    class="m-menu__link-text">الأدوار</span><i
-                                    class="m-menu__ver-arrow la la-angle-right"></i></a>
-                            <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-                                <ul class="m-menu__subnav">
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('roles.index') }}"
-                                                                                      class="m-menu__link "><i
-                                                class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                                class="m-menu__link-text">عرض الكل</span></a></li>
-                                </ul>
-                            </div>
-                        </li>
-{{--                    @endcan--}}
-                    @can('show_cities')
-                        <li class="m-menu__item  m-menu__item--submenu pl-3" aria-haspopup="true"
-                            m-menu-submenu-toggle="hover"><a href="{{ route('cities.index') }}"
-                                                             class="m-menu__link m-menu__toggle"><i
-                                    class="m-menu__link-icon fas fa-circle"></i><span class="m-menu__link-text">المدن</span></a>
-                        </li>
-                    @endcan
-
                 </ul>
             </div>
             <!-- END: Aside Menu -->

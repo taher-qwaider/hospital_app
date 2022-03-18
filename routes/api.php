@@ -20,7 +20,12 @@ Route::prefix('doctors')->group(function (){
 
 Route::prefix('sections')->group(function (){
     Route::get('index', [\App\Http\Controllers\cms\api\SectionController::class, 'index']);
-    Route::get('{section}/doctors', [\App\Http\Controllers\cms\api\SectionController::class, 'doctors']);
+    Route::get('doctors', [\App\Http\Controllers\cms\api\SectionController::class, 'doctors']);
+});
+Route::get('medicalSections', function (){
+    $sections = \App\Models\MedicalSection::all();
+
+    return response()->json(['status' => true,'data' => $sections]);
 });
 
 Route::prefix('users')->group(function (){
@@ -33,7 +38,7 @@ Route::prefix('users')->group(function (){
 Route::prefix('users/auth')->group(function (){
     Route::post('login', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'login']);
 });
-Route::prefix('users/auth')->middleware('auth:userApi')->group(function (){
+Route::prefix('users/auth')->group(function (){
     Route::get('logout', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'logout']);
     Route::get('refresh', [\App\Http\Controllers\cms\api\UserApiAuthController::class, 'refreshToken']);
     Route::post('sendReservation', [\App\Http\Controllers\cms\api\ReservationController::class, 'sendReservationEmail']);

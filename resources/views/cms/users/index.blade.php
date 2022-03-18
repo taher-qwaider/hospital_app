@@ -39,8 +39,7 @@
                                             <th>الهاتف</th>
 {{--                                            <th>المرحلة</th>--}}
 {{--                                            <th>المدرس</th>--}}
-                                            <th>المدينة</th>
-                                            <th>الصلاحيات</th>
+                                            {{-- <th>الصلاحيات</th>--}}
 {{--                                            <th>الواجبات</th>--}}
                                             <th>إعدادات</th>
                                         </tr>
@@ -77,9 +76,9 @@
                     {data: 'phone', name: 'phone'},
                     // {data: 'level', name: 'level'},
                     // {data: 'teacher.first_name', name: 'teacher.first_name'},
-                    {data: 'city.name', name: 'city.name'},
+                    //{data: 'city.name', name: 'city.name'},
                     // {data: 'homeworks', name: 'homeworks'},
-                    {data: 'permissions', name: 'permissions'},
+                    //{data: 'permissions', name: 'permissions'},
                     {
                         data: 'action',
                         name: 'action',
@@ -127,7 +126,7 @@
         function showAlert(id){
             Swal.fire({
                 title: 'هل انت متأكد',
-                text: "لن تستطيع المستخدم",
+                //text: "لن تستطيع المستخدم",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

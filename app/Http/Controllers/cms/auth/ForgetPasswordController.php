@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\cms\auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 //use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
@@ -14,12 +13,13 @@ use Illuminate\Support\Facades\Validator;
 class ForgetPasswordController extends Controller
 {
 //    use SendsPasswordResetEmails;
+
     public function changeForgetPassword(Request $request, $token){
         $user = User::where('password_token', $token)->first();
         if (isset($user))
             return view('cms.resetPassword', ['user' =>$user]);
     }
-
+    
     public function resetForgetPassword(Request $request, $token){
         $validator = Validator($request->all(), [
             'password' => 'required|string|min:8|confirmed',

@@ -141,6 +141,7 @@
                 .then(function (response) {
                     console.log(response);
                     showConfirm(response.data.message, true);
+                    window.location.href = '{!! route('sections.index') !!}';
                     // document.getElementById('name').value = '';
                 })
                 .catch(function (error) {

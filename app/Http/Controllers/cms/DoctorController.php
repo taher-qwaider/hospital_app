@@ -85,26 +85,27 @@ class DoctorController extends Controller
 //        dump($request->all());
         $validator = Validator($request->all(), [
             'full_name' => 'required|string|min:3',
-            'specialty' => 'required|string|min:3',
             'email' => 'required|email|unique:doctors,email',
-            'phone' => 'required|digits:9|unique:doctors,phone',
+            //'phone' => 'required|digits:9|unique:doctors,phone',
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
-            'gender' => 'required|in:M,F',
-            'city_id' => 'required|numeric|exists:cities,id',
+            'specialty' => 'required|string|min:3',
+            //'gender' => 'required|in:M,F',
+            //'city_id' => 'required|numeric|exists:cities,id',
             'section_id' => 'required|numeric|exists:sections,id',
-            'address' => 'required|string',
+            //'address' => 'required|string',
+                            'password' => $request->get('password') ? Hash::make($request->get('password')) : Hash::make('password')
         ]);
         if (!$validator->fails()){
             $data = [
                 'full_name' => $request->get('full_name'),
-                'specialty' => $request->get('specialty'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
                 'phone' => $request->get('phone'),
                 'city_id' => $request->get('city_id'),
                 'section_id' => $request->get('section_id'),
                 'address' => $request->get('address'),
-                'password' => $request->get('password') ? Hash::make($request->get('password')) : Hash::make('password')
+                'desc' => $request->get('desc'),
+                'password' => Hash::make($request->get('password')) ?? Hash::make('password')
             ];
             $user = Doctor::updateOrCreate(['id' => 0], $data);
             if ($request->hasFile('image')) {
@@ -114,7 +115,7 @@ class DoctorController extends Controller
                 $isSaved = $user->image()->save($image);
             }else{
                 $image = new Image();
-                $image->path = 'images/doctor_avatar.jpg';
+                $image->path = 'images/doctor_avatar.png';
                 $isSaved = $user->image()->save($image);
             }
 //            $user->assignRole('user');
@@ -143,7 +144,7 @@ class DoctorController extends Controller
     public function edit($id)
     {
         //
-        $doctor = Doctor::find($id);
+        $doctor = Doctor::with('section')->find($id);
         $cities = City::all();
         $sections = Section::all();
         return response()->view('cms.doctor.edit', [
@@ -166,24 +167,25 @@ class DoctorController extends Controller
 //        dd($request->all());
         $validator = Validator($request->all(), [
             'full_name' => 'required|string|min:3',
-            'email' => 'required|email|unique:doctors,email,'.$id,
-            'phone' => 'required|digits:9|unique:doctors,phone,'.$id,
+            //'email' => 'email|unique:doctors,email,'.$id,
+            //'phone' => 'required|digits:9|unique:doctors,phone,'.$id,
 //            'image' => 'required|image|mimes:jpg,jpeg,png',
-            'gender' => 'required|in:M,F',
-            'city_id' => 'required|numeric|exists:cities,id',
-            'section_id' => 'required|numeric|exists:sections,id',
-            'address' => 'required|string',
+            //'gender' => 'required|in:M,F',
+            //'city_id' => 'required|numeric|exists:cities,id',
+            //'section_id' => 'required|numeric|exists:sections,id',
+            //'address' => 'required|string',
         ]);
         if (!$validator->fails()){
             $data = [
                 'full_name' => $request->get('full_name'),
-                'specialty' => $request->get('specialty'),
                 'email' => $request->get('email'),
                 'gender' => $request->get('gender'),
                 'phone' => $request->get('phone'),
                 'city_id' => $request->get('city_id'),
                 'section_id' => $request->get('section_id'),
                 'address' => $request->get('address'),
+                'desc' => $request->get('desc'),
+                'specialty' => $request->get('specialty'),
             ];
             $user = Doctor::updateOrCreate(['id' => $id], $data);
             if ($request->hasFile('image')) {

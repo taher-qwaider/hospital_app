@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 @endsection
 
-@section('sub-title', 'إنشاء مستخدم جديد')
+@section('sub-title', 'إنشاء جديد')
 
 @section('main-content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -25,11 +25,18 @@
                                         <input class="form-control m-input" type="text" placeholder="الاسم" id="full_name">
                                     </div>
                                 </div>
-
+                                
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="specialty" class="col-3 col-form-label">التخصص</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="text" placeholder="التخصص" id="specialty">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group m-form__group row mb-25">
+                                    <label for="desc" class="col-3 col-form-label">الوصف</label>
+                                    <div class="col-9">
+                                        <input class="form-control m-input" type="text" placeholder="الوصف" id="desc">
                                     </div>
                                 </div>
 
@@ -49,18 +56,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                {{--
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="phone" class="col-3 col-form-label">الهاتف</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="tel" placeholder="الرقم" id="phone">
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="form-group m-form__group row mb-25">
                                     <label for="image" class="col-3 col-form-label">الصورة</label>
                                     <div class="col-9">
                                         <input class="form-control m-input" type="file" placeholder="الصورة" id="image">
                                     </div>
                                 </div>
+                                {{--
                                 <div class="form-group m-form__group row mb-25">
 
                                     <div class="col-1">
@@ -87,7 +96,7 @@
                                     <div class="col-9">
                                         <textarea class="form-control m-input" rows="5" type="text" placeholder="العنوان" id="address"></textarea>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                     </div>
@@ -172,13 +181,15 @@
             var formData = new FormData();
             formData.append('full_name', document.getElementById('full_name').value);
             formData.append('email', document.getElementById('email').value);
-            formData.append('phone', document.getElementById('phone').value);
+            //formData.append('phone', document.getElementById('phone').value);
             formData.append('image', document.getElementById('image').files[0]);
-            formData.append('gender', document.getElementById('male').checked ? 'M' : 'F');
-            formData.append('city_id', document.getElementById('city').value);
-            formData.append('address', document.getElementById('address').value);
+            //formData.append('gender', document.getElementById('male').checked ? 'M' : 'F');
+            //formData.append('city_id', document.getElementById('city').value);
+            //formData.append('address', document.getElementById('address').value);
             formData.append('section_id', document.getElementById('section_id').value);
-            formData.append('specialty', document.getElementById('specialty').value);
+                        formData.append('specialty', document.getElementById('specialty').value);
+                        formData.append('desc', document.getElementById('desc').value);
+
             axios.post('{!! route('doctors.store') !!}', formData)
                 .then(function (response) {
                     console.log(response);
