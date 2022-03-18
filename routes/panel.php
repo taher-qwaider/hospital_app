@@ -22,6 +22,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function (){
         $data['users_count'] = \App\Models\User::all()->count();
         $data['doctors_count'] = \App\Models\Doctor::all()->count();
         $data['sections_count'] = \App\Models\Section::all()->count();
+        $data['MedicalSections_count'] = \App\Models\MedicalSection::all()->count();
+        $data['events_count'] = \App\Models\Event::all()->count();
 
         return view('cms.dashboard', $data);
     })->name('dashboard');

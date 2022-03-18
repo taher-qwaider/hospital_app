@@ -16,18 +16,16 @@ class ReservationController extends Controller
     //
 
     public function sendReservationEmail(Request $request){
-        $user = Auth::guard('userApi')->user();
-        $validator = Validator(['email'=>$user->email], [
-            'email' => 'email|exists:users,email'
-        ]);
-        if (!$validator->fails()){
+        $user = [];
+
             $reservation_email = Setting::where('key', 'reservation_email')->first();
             $doctor_name = $request->doctor_name;
             $date = $request->date;
+            $user['name'] = $request->patient_name;
+            $user['phone'] = $request->phone;
+
             Mail::to($reservation_email->value)->send(new ReservationEmail($user, $doctor_name, $date));
             return response()->json(['status' => true, 'message' => 'تم إرسال الإيميل بنجاح'], 200);
 
-        }else
-            return response()->json(['status' => false, 'message' => $validator->getMessageBag()->first()], 200);
     }
 }
