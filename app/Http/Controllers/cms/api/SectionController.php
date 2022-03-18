@@ -20,7 +20,7 @@ class SectionController extends Controller
 
     public function doctors()
     {
-        $section = Section::with('doctors')->get();
+        $section = Section::with(['doctors', 'image'])->get();
         //$doctors = $section->doctors;
 
         return response()->json(['status' => true,'data' => $section]);

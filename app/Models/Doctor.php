@@ -10,6 +10,7 @@ class Doctor extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $with = ['image'];
 
     public function getGenderAttribute($gender){
         return (($gender == 'M') ? 'Male' : 'Female');
